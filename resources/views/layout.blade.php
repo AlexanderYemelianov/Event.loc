@@ -8,19 +8,14 @@
 
         <title>{{ config('app.name', 'Event.loc') }}</title>
 
-        <!-- Part for slideshow staff -->
-        @yield('head')
-
-        <link href="/css/app.css" rel="stylesheet">
+        <!-- Styles for images -->
+        <link rel="stylesheet" type="text/css" href="../css/hovereffect.css" />
 
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/bootstrap.css">
 
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="/js/bootstrap.min.js"></script>
 
     </head>
 
@@ -46,52 +41,28 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-left">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/') }}">Главная</a></li>
-                            <li><a href="{{ url('/about') }}">О компании</a></li>
-                            <li><a href="{{ url('/servicies') }}">Что мы делаем</a></li>
-                            <li><a href="{{ url('/clients') }}">Наши клиенты</a></li>
-                            <li><a href="{{ url('/socialprojects') }}">Социальные проекты</a></li>
-                            <li><a href="{{ url('/values') }}">Ценности</a></li>
-                            <li><a href="{{ url('/gallery') }}">Галерея</a></li>
-                            <li><a href="{{ url('/contacts') }}">Контакты</a></li>
-                            {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
-                            {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
+                        <li {{ (Request::is('/') ? 'class=active' : '') }}><a href="{{ url('/') }}">Главная</a></li>
+                        <li {{ (Request::is('about') ? 'class=active' : '') }}><a href="{{ url('/about') }}">О компании</a></li>
+                        <li {{ (Request::is('events') ? 'class=active' : '') }}><a href="{{ url('/events') }}">События</a></li>
+                        <li {{ (Request::is('clients') ? 'class=active' : '') }}><a href="{{ url('/clients') }}">Наши клиенты</a></li>
+                        <li {{ (Request::is('socialprojects') ? 'class=active' : '') }}><a href="{{ url('/socialprojects') }}">Социальные проекты</a></li>
+                        <li {{ (Request::is('gallery') ? 'class=active' : '') }}><a href="{{ url('/gallery') }}">Галерея</a></li>
+                        <li {{ (Request::is('locations') ? 'class=active' : '') }}><a href="{{ url('/locations') }}">Места</a></li>
+                        <li {{ (Request::is('contacts') ? 'class=active' : '') }}><a href="{{ url('/contacts') }}">Контакты</a></li>
+                            <!-- Authentication Links -->
+                        {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
+                        {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
                     </ul>
                 </div>
             </div>
         </nav>
 
         {{--Content section--}}
+
+        <div>
+            @yield('indexContent')
+        </div>
 
         <div class="container">
 
@@ -102,9 +73,9 @@
     </div>
 
         {{--!!!!!!!!!!!!!!!!!!!!Styles of footer should not be there!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!--}}
-        <div class="navbar-fixed-bottom row-fluid">
+        <div class="navbar-fixed-bottom row-fluid" style="background: #ffffff">
             <div class="navbar-inner">
-                <footer style="width: 100%; height: 60px; background-color: #f5f5f5;">
+                <footer>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

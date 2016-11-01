@@ -6,7 +6,7 @@
     <div class="col-lg-8 col-md-8 col-sm-4">
         <form action="/eventTypeUpdate/{{ $type->id }}" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
+            <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
             <input type="hidden" name="oldThumb" value="<?=$type->thumbnail;?>">
 
             <div class="form-group">

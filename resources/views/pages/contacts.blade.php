@@ -25,8 +25,9 @@
 
                     <input type="email" class="form-control" placeholder="Email address" required name="email"><br>
 
-                    <textarea  class="form-control" placeholder="Leave your message here and we will cantact you as soon as possible" maxlength="500" required name="message">{{ old('message') }}</textarea><br>
+                    <input type="text" class="form-control" placeholder="Contact phone"  name="phone"><br>
 
+                    <textarea  class="form-control" placeholder="Leave your message here and we will cantact you as soon as possible" maxlength="500" required name="message">{{ old('message') }}</textarea><br>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Send message</button>
