@@ -40,19 +40,16 @@ Route::group(['middleware' => ['web']], function(){
 
     Route::get('/', 'PagesController@index');
     Route::get('about', 'PagesController@about');
-    Route::get('servicies', 'PagesController@servicies');
+    Route::get('events', 'PagesController@events');
     Route::get('clients', 'PagesController@clients');
     Route::get('socialprojects', 'PagesController@socialProjects');
-    Route::get('values', 'PagesController@values');
+    Route::get('locations', 'PagesController@locations');
     Route::get('gallery', 'PagesController@gallery');
     Route::get('contacts', 'PagesController@contacts');
 
-    Route::get('eventTypeShow/{type}', 'PagesController@showType');
+    Route::get('teambuildingShow/{type}', 'PagesController@teambuildingShow');
+    Route::get('TypeShow/{type}', 'PagesController@showType');
     Route::get('eventShow/{event}', 'PagesController@showEvent');
-
-
-    //test shit
-    Route::get('test', 'PagesController@test');
 
     Route::post('imgUpload', 'PhotoController@imgUpload');
     Route::get('photoDelete/{photo}', 'PhotoController@photoDelete');

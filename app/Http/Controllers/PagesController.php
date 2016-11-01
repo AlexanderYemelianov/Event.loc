@@ -13,13 +13,17 @@ class PagesController extends Controller
 {
     public function index()
     {
+        $teamBuilding = EventsType::all()->where('class', 4);
+
+        //Its not good! You should find retrieve a single item from a collection rather then make to request to DB
+
         $corpEvents = EventsType::all()->where('class', 1);
 
         $fashionEvents = EventsType::all()->where('class', 2);
 
         $privateEvents = EventsType::all()->where('class', 3);
 
-        return view('pages.index', compact('corpEvents','fashionEvents', 'privateEvents'));
+        return view('pages.index', compact('teamBuilding' ,'corpEvents','fashionEvents', 'privateEvents'));
     }
 
     public function about()
@@ -27,9 +31,9 @@ class PagesController extends Controller
         return view('pages.about');
     }
 
-    public function servicies()
+    public function events()
     {
-        return view('pages.servicies');
+        return view('pages.events');
     }
 
     public function clients()
@@ -42,9 +46,9 @@ class PagesController extends Controller
         return view('pages.socialProjects');
     }
 
-    public function values()
+    public function locations()
     {
-        return view('pages.values');
+        return view('pages.locations');
     }
 
     public function gallery()
@@ -57,6 +61,13 @@ class PagesController extends Controller
     public function contacts()
     {
         return view('pages.contacts');
+    }
+
+    public function teambuildingShow(EventsType $type)
+    {
+        $type->load('events');
+
+        return view('pages.teambuildingShow', compact('type'));
     }
 
     public function showType(EventsType $type)

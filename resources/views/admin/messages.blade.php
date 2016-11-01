@@ -16,20 +16,22 @@
             <table class="table table-striped" style="width: 100%">
                 <tr>
                     <td style="width: 10%">Name</td>
-                    <td style="width: 20%">Email</td>
-                    <td style="width: 45%">Message</td>
+                    <td style="width: 15%">Email</td>
+                    <td style="width: 15%">Phone</td>
+                    <td style="width: 40%">Message</td>
                     <td style="width: 15%">Date</td>
-                    <td style="width: 10%">Status</td>
+                    <td style="width: 5%">Status</td>
                 </tr>
 
                 @foreach($sortedMessages as $item)
                 <tr>
-                    <td><?=$item['name']?> <?=$item['last_name']?></td>
-                    <td><?=$item['email']?></td>
-                    <td><?=$item['message']?></td>
-                    <td><?=$item['created_at']?></td>
+                    <td>{{ $item->name }} {{ $item->last_name }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->phone }}</td>
+                    <td>{{ $item->message }}</td>
+                    <td>{{ $item->created_at }}</td>
                     <td>
-                        @if($item['active'] === 0)
+                        @if( $item->active === 0)
                             <p>Checked</p>
                             {{--Dont work cause Sass or Less--}}
                             {{--<span class="glyphicon glyphicon-ok" aria-hidden="true" class="sr-only"></span>--}}
