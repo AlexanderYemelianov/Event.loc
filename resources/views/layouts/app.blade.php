@@ -39,7 +39,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Event.loc') }}
+                        {{ config('app.name', 'EventLab') }}
                     </a>
                 </div>
 
@@ -56,8 +56,12 @@
                             <li><a href="{{ url('/login') }}">Login</a></li>
                         @else
                             <li><a href="{{ url('/eventsTypes') }}">Events types</a></li>
-                            <li><a href="{{ url('/events') }}">Events</a></li>
-                            <li><a href="{{ url('/getAllPhoto') }}">Gallary</a></li>
+                            <li><a href="{{ url('/programs') }}">TeamBuilding programs</a></li>
+                            <li><a href="{{ url('/getSocialProjects') }}">SocialProjects</a></li>
+                            <li><a href="{{ url('/getClients') }}">Clients</a></li>
+                            <li><a href="{{ url('/galleries') }}">Gallary</a></li>
+                            <li><a href="{{ url('/getLocations') }}">Locations</a></li>
+                            <li><a href="{{ url('/getNews') }}">Events</a></li>
                             <li><a href="{{ url('/getMessages') }}">Messages</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

@@ -6,24 +6,35 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\EventsType;
-use App\Photo;
 Use App\Event;
-Use App\Test;
+Use App\Client;
+use App\SocialProject;
+use App\Gallery;
+use App\Location;
+use App\News;
+
+
 class PagesController extends Controller
 {
     public function index()
     {
-        $teamBuilding = EventsType::all()->where('class', 4);
 
-        //Its not good! You should find retrieve a single item from a collection rather then make to request to DB
+        $all = EventsType::all();
 
-        $corpEvents = EventsType::all()->where('class', 1);
+        $teamBuilding = $all->where('type_name', '=', 'Teambilding / Тренинги (Otdoor)');
 
-        $fashionEvents = EventsType::all()->where('class', 2);
+        $newYear = $all->where('type_name', '=', 'Корпаративнгый новый год');
 
-        $privateEvents = EventsType::all()->where('class', 3);
+        $conferences = $all->where('type_name', '=', 'Конференции/тренинги');
 
-        return view('pages.index', compact('teamBuilding' ,'corpEvents','fashionEvents', 'privateEvents'));
+        $corpEvents = $all->where('class', 1);
+
+        $fashionEvents = $all->where('class', 2);
+
+        $privateEvents = $all->where('class', 3);
+
+
+        return view('pages.index', compact('teamBuilding' ,'corpEvents','fashionEvents', 'privateEvents', 'newYear', 'conferences'));
     }
 
     public function about()
@@ -31,36 +42,54 @@ class PagesController extends Controller
         return view('pages.about');
     }
 
-    public function events()
+    public function news()
     {
-        return view('pages.events');
+
+        $allNews = News::all()->sortByDesc('news_date');
+
+        $activeNews = $allNews->where('news_active', '!=', 0);
+
+        $oldNews = $allNews->where('news_active', '=', 0);
+
+        return view('pages.news', compact('activeNews', 'oldNews'));
     }
 
     public function clients()
     {
-        return view('pages.clients');
+        $clients = Client::all();
+
+        return view('pages.clients', compact('clients'));
     }
 
     public function socialProjects()
     {
-        return view('pages.socialProjects');
+        $socialProjects = SocialProject::all();
+
+        return view('pages.socialProjects', compact('socialProjects'));
     }
 
     public function locations()
     {
-        return view('pages.locations');
+        $locations = Location::all();
+
+        return view('pages.locations', compact('locations'));
     }
 
     public function gallery()
     {
-        $photos = Photo::all();
+        $galleries = Gallery::all()->sortByDesc('date');
 
-        return view('pages.gallery', compact('photos'));
+        return view('pages.gallery', compact('galleries'));
     }
 
     public function contacts()
     {
         return view('pages.contacts');
+    }
+
+    public function contactForm()
+    {
+        return view('pages.contactForm');
     }
 
     public function teambuildingShow(EventsType $type)
@@ -72,16 +101,24 @@ class PagesController extends Controller
 
     public function showType(EventsType $type)
     {
-        $type->load('events');
-
         return view('pages.showType', compact('type'));
     }
 
     public function showEvent(Event $event)
     {
-        $events = Event::all()->where('events_type_id', $event->events_type_id);
+        $events = Event::all()->where('id', '!=', $event->id);
 
-       return view('pages.showEvent', compact('event', 'events'));
+        return view('pages.showEvent', compact('event', 'events'));
+    }
+
+    public function projectShow(SocialProject $project)
+    {
+        return view('pages.showProject', compact('project'));
+    }
+
+    public function galleryShow(Gallery $gallery)
+    {
+        return view('pages.galleryShow', compact('gallery'));
     }
 
 }

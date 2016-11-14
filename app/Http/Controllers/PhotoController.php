@@ -23,13 +23,11 @@ class PhotoController extends Controller
 
         $newPhoto = new Photo();
 
-        $newPhoto->display_name = $request->display_name;
-        $newPhoto->events_id = $request->events_id;
-        $newPhoto->photo_description = $request->photo_description;
+        $newPhoto->gallery_id = $request->gallery_id;
 
         //get file from a request
 
-        $file = $request->file('fileToUpload');
+        $file = $request->file('photo');
 
         //set file name
         $filename = uniqid() . ' - ' . $file->getClientOriginalName();
@@ -37,33 +35,33 @@ class PhotoController extends Controller
 
         //move file to correct location
 
-        if(!file_exists('picUploadTestDir'))
+        if(!file_exists('picUploadTestDir/gallery'))
         {
-            mkdir('picUploadTestDir', 0777, true);
+            mkdir('picUploadTestDir/gallery', 0777, true);
         }
-        $file->move('picUploadTestDir', $filename);
+        $file->move('picUploadTestDir/gallery/', $filename);
 
 
-        $file = Image::make('picUploadTestDir/'. $filename)->resize(768, 576)->save('picUploadTestDir/' . $filename, 80);
+        $file = Image::make('picUploadTestDir/gallery/'. $filename)->resize(480, 360)->save('picUploadTestDir/gallery/' . $filename, 80);
 
         //save img path to DB
 
         $newPhoto->save();
 
-        return back()->with('message', 'Img was uploaded succesfully!');
+        return back()->with('message', 'Img was uploaded successfully!');
     }
+
 
     public function photoDelete(Photo $photo)
     {
-        $photo->delete();
-
-        $photoToDelete = 'picUploadTestDir/' . $photo->photo_name;
+        $photoToDelete = 'picUploadTestDir/gallery/' . $photo->photo_name;
 
         if(file_exists($photoToDelete))
         {
             unlink($photoToDelete);
         }
 
+        $photo->delete();
 
         return back()->with('message', 'Photo was deleted successfully!');
     }

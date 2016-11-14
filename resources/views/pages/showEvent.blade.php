@@ -2,17 +2,15 @@
 
 @section('content')
 
+    <h3 align="center">{{ $event->event_name }}</h3>
+
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-            <img class="img-responsive" src="../picUploadTestDir/thumbnails/{{ $event->thumbnails }}" alt="{{ substr($event->thumbnails,24) }}">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+            <img class="img-responsive" src="../picUploadTestDir/collages/{{ $event->collage }}" alt="{{ substr($event->thumbnails,24) }}">
         </div>
 
-        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
-
-            <h3>{{ $event->event_name }}</h3>
-
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
             <p align="justify"><?=nl2br($event->description);?></p>
-
         </div>
     </div>
 
@@ -20,13 +18,18 @@
     <div class="row">
         @foreach($events as $item)
 
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-            <a href="/eventShow/{{ $item->id }}"> <img class="img-responsive" src="../picUploadTestDir/thumbnails/{{ $item->thumbnails }}" alt="{{ $item->event_name }}">
-                <div style="height: 150px; border: outset lightgray; max-width: 250px;" align="center">
-                    <br><br><h4 >{{ $item->event_name }}</h4>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding: 0 1px 0 1px;">
+                <div class="hovereffect">
+                    <img class="img-responsive" src="../picUploadTestDir/thumbnails/{{ $item->thumbnails }}" alt="{{substr($item->thumbnails, 25)}}">
+                    <div class="overlay">
+                        <h2>{{ $item->event_name }}</h2>
+                        <p>
+                            <a href="/eventShow/{{ $item->id }}">Узнать больше </a>
+                        </p>
+                    </div>
                 </div>
-            </a>
-        </div>
+            </div>
+
         @endforeach
     </div>
 

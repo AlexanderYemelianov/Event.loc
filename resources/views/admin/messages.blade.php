@@ -2,9 +2,15 @@
 
 @section('content')
 
-    <div>
-        <a href="getAllMessages"><button class="btn btn-md btn-primary">All messages</button></a>
-        <a href="getMessages"><button class="btn btn-md btn-primary">Unseen messages</button></a>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <a href="getAllMessages"><button class="btn btn-md btn-primary">All messages</button></a>
+            <a href="getMessages"><button class="btn btn-md btn-primary">Unseen messages</button></a>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h4 class="text-right">Press 'Crtl+F' to start searching</h4>
+        </div>
     </div>
 
     <br>
@@ -17,10 +23,11 @@
                 <tr>
                     <td style="width: 10%">Name</td>
                     <td style="width: 15%">Email</td>
-                    <td style="width: 15%">Phone</td>
+                    <td style="width: 10%">Phone</td>
                     <td style="width: 40%">Message</td>
                     <td style="width: 15%">Date</td>
                     <td style="width: 5%">Status</td>
+                    <td style="width: 5%">Delete</td>
                 </tr>
 
                 @foreach($sortedMessages as $item)
@@ -36,8 +43,11 @@
                             {{--Dont work cause Sass or Less--}}
                             {{--<span class="glyphicon glyphicon-ok" aria-hidden="true" class="sr-only"></span>--}}
                         @else
-                            <a href="checkMessage/<?=$item['id']?>"><button class="btn btn-sm btn-info">Seen</button></a>
+                            <a href="checkMessage/<?=$item['id']?>"><button class="btn btn-sm btn-info">Checked</button></a>
                         @endif
+                    </td>
+                    <td>
+                        <a href="deleteMessage/{{ $item->id }}" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger">Delete</button></a>
                     </td>
                 </tr>
                 @endforeach
