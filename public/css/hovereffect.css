@@ -36,7 +36,7 @@
     text-transform: uppercase;
     color: #fff;
     position: relative;
-    font-size: 17px;
+    font-size: 20px;
     background-color: transparent;
     padding: 15% 0 10px 0;
     text-align: left;
@@ -61,6 +61,7 @@
 .hovereffect a, .hovereffect p {
     color: #FFF;
     opacity: 0;
+    font-size: 20px;
     filter: alpha(opacity=0);
     -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
     transition: opacity 0.35s, transform 0.45s;

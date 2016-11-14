@@ -45,7 +45,7 @@ class EventsTypeController extends Controller
 
         $newType->save();
 
-        return back()->with('message', 'New events type was created succesfully!');
+        return back()->with('message', 'New events type was created successfully!');
 
     }
 

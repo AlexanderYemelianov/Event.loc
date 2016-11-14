@@ -7,16 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
 
-    protected $fillable = ['display_name', 'photo_name', 'photo_description', 'events_id'];
+    protected $fillable = [ 'photo_name', 'gallery_id'];
 
-    public function event()
+    public function gallery()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Gallery::class);
     }
 
-    public function type()
-    {
-        return $this->belongsTo(EventsType::class);
-    }
+
 
 }
