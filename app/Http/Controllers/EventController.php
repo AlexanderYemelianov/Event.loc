@@ -25,6 +25,7 @@ class EventController extends Controller
         $newEvent = new Event();
         $newEvent->event_name = $request->event_name;
         $newEvent->description = $request->description;
+        $newEvent->events_type_id = $request->events_type_id;
 
         $file = $request->file('thumbnails');
 

@@ -2,28 +2,38 @@
 
 @section('content')
 
-    <div class="col-md-6 col-md-offset-3">
+    <div class="row">
 
-        <h1>Contact form</h1>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            @if(Session::has('message'))
+                <h3>{{ Session::get('message') }}</h3>
+            @endif
+        </div>
 
-        <form method="POST" action="/message">
+        <div class="col-md-6 col-md-offset-3">
 
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <h1>Форма обратной связи</h1>
 
-            <input type="text"  class="form-control" placeholder="Ваше имя" required name="name"><br>
+            <form method="POST" action="/message">
 
-            <input type="text" class="form-control" placeholder="Ваша фамилия" required name="last_name"><br>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-            <input type="email" class="form-control" placeholder="Контактный адрес электронной почты" required name="email"><br>
+                <input type="text"  class="form-control" placeholder="Ваше имя" required name="name"><br>
 
-            <input type="text" class="form-control" placeholder="Контактный телефон"  name="phone"><br>
+                <input type="text" class="form-control" placeholder="Ваша фамилия" required name="last_name"><br>
 
-            <textarea  class="form-control" placeholder="Оставтье Ваше сообщение здесь" maxlength="500" required name="message"></textarea><br>
+                <input type="email" class="form-control" placeholder="Контактный адрес электронной почты" required name="email"><br>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Send message</button>
-            </div>
+                <input type="text" class="form-control" placeholder="Контактный телефон"  name="phone"><br>
 
-        </form>
+                <textarea  class="form-control" placeholder="Оставтье Ваше сообщение здесь" maxlength="500" required name="message"></textarea><br>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Send message</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 
 @stop

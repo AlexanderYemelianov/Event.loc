@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h3>Места</h3>
+    <h3 align="center">Места</h3>
 
     @foreach($locations as $location)
 

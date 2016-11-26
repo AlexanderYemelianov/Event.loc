@@ -23,13 +23,13 @@
 
     <body>
 
-    <div id="app">
+    <div id="app" style="overflow:hidden;">
         <nav class="navbar navbar-default navbar-static-top">
 
             <div class="row">
                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12" align="center">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="../EventLab_logo_2-01.png" height="150px" width="125px">
+                        <img src="../EventLab_logo_2-01.png" height="150px" width="150px">
                     </a>
                 </div>
 
@@ -87,18 +87,33 @@
 
     </div>
 
-        <div class="navbar-fixed-bottom row-fluid" style="background: #ffffff">
+        <div class="navbar-fixed-bottom row-fluid" style="background: #ffffff; height: 50px;">
             <div class="navbar-inner">
                 <footer>
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <p class="text-muted">Контакты</p>
+                            <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                                <address style="font-size: 15px;">
+                                    <abbr title="контактыне телефоны">Контакты:</abbr>
+                                    (050) 250-4848 (068) 074-9797 <br>
+                                    <a href="mailto:#">info@eventlab.com.ua</a>
+                                </address>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="right">
-                                <a href="https://vk.com/" target="_blank"><img src="../iconz/vk_2.png" alt="VK"></a>
-                                <a href="https://www.facebook.com/" target="_blank"><img src="../iconz/facebook.png" alt="Facebook"></a>
-                                <a href="https://www.instagram.com/" target="_blank"><img src="../iconz/instagram.png" alt="Instagram"></a>
+
+                            {{--mobile footer--}}
+
+                            <div class="hidden-lg hidden-md hidden-sm col-xs-6">
+                                <address style="font-size: 10px;">
+                                    <abbr title="контактыне телефоны">Контакты:</abbr><br>
+                                    (050) 250-4848 (068) 074-9797 <br>
+                                    <a href="mailto:#">info@eventlab.com.ua</a>
+                                </address>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="right" style="padding-top: 5px;">
+                                <a href="https://vk.com/labkiev" target="_blank"><img src="../iconz/vk_2.png" alt="VK" height="40px"></a>
+                                <a href="https://www.facebook.com/EventLabKiev?fref=ts" target="_blank"><img src="../iconz/facebook.png" alt="Facebook" height="40px"></a>
+                                <a href="https://www.instagram.com/event_lab_kiev" target="_blank"><img src="../iconz/instagram.png" alt="Instagram" height="40px"></a>
                             </div>
                         </div>
                     </div>

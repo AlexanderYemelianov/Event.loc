@@ -50,7 +50,19 @@ class GalleriesController extends Controller
     public function deleteGallery(Gallery $gallery)
     {
 
-        if(!isset($gallery->photos[0]->photo_name))
+        foreach($gallery->photos as $photo)
+        {
+            $galleriesPhotos[] = $photo->id;
+        }
+
+        $photoCheck = isset($galleriesPhotos) ? $galleriesPhotos: false;
+
+        if(!empty($photoCheck))
+        {
+            return back()->with('message', 'Gallery have some photo. Please delete all photo from Gallery!');
+
+        }
+        else
         {
             $thumb = 'picUploadTestDir/gallery/' . $gallery->thumbnail;
 
@@ -62,10 +74,6 @@ class GalleriesController extends Controller
             $gallery->delete();
 
             return back()->with('message', 'Gallery was deleted successfully!');
-        }
-        else
-        {
-            return back()->with('message', 'Gallery have some photo. Please delete all photo from Gallery!');
         }
 
     }
