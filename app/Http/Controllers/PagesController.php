@@ -21,11 +21,11 @@ class PagesController extends Controller
 
         $all = EventsType::all();
 
-        $teamBuilding = $all->where('type_name', '=', 'Teambilding / Тренинги (Otdoor)');
+        $teamBuilding = $all->where('id', 1);
 
-        $newYear = $all->where('type_name', '=', 'Корпаративнгый новый год');
+        $newYear = $all->where('id', 2);
 
-        $conferences = $all->where('type_name', '=', 'Конференции/тренинги');
+        $conferences = $all->where('id', 3);
 
         $corpEvents = $all->where('class', 1);
 

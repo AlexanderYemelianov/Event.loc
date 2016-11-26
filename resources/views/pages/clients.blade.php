@@ -3,7 +3,7 @@
 @section('content')
 
     <div align="center">
-        <h3>Our clients</h3>
+        <h3>Наши клиенты</h3>
     </div>
 
     <div class="row">

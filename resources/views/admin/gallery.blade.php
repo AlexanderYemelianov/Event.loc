@@ -6,7 +6,7 @@
 
     <form action="/addGallery" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
+        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 
         <div class="form-group">
             <input type="text" name="gallery_name" placeholder="Name of the a new gallery" class="form-control" required>

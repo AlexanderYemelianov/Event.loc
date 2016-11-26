@@ -26,20 +26,9 @@
 
         </div>
 
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <h5>Choose an image for a link</h5>
-                <div class="form-group">
-                    <input type="file" name="thumbnails" id="thumbnails" required>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <h5>Choose a collage</h5>
-                <div class="form-group">
-                    <input type="file" name="collage" id="collage" required>
-                </div>
-            </div>
+        <h5>Choose an image for a link</h5>
+        <div class="form-group">
+            <input type="file" name="thumbnails" id="thumbnails" required>
         </div>
 
         <div class="form-group">

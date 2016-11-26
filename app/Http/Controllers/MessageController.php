@@ -20,6 +20,11 @@ class MessageController extends Controller
 
         $message = new Message($request->all());
 
+        if(!filter_var($message->email, FILTER_VALIDATE_EMAIL))
+        {
+            return back()->with('message', 'Вы указали не корректный адрес электронной почты. Воспользуйтесь формой обратной связи еще раз.');
+        }
+
         if (empty($request->phone))
         {
             $message->phone = 'There is no phone';
@@ -42,7 +47,7 @@ class MessageController extends Controller
 
         mail($to, $subject, $message);
 
-        return back()->with('message', 'Thank you for your message! We will contact you as soon as possible.');
+        return back()->with('message', 'Благодарим за Ваше обращение. Мы свяжемся с Вами в ближайшее время.');
     }
 
 }

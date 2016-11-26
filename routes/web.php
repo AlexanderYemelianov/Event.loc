@@ -91,9 +91,9 @@ Route::group(['middleware' => ['web']], function(){
 
     //For registration
 
-    /*Route::get('register', function(){
+    Route::get('register', function(){
         return view('auth.register');
-    });*/
+    });
 
     Route::post('imgUpload', 'PhotoController@imgUpload');
 
