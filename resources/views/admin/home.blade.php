@@ -5,10 +5,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    <img src="#" alt="picture">
+                <div class="panel-body" align="center">
+					<img src="../picUploadTestDir/1.jpg" alt="picture" height="500px">
                 </div>
             </div>
         </div>
