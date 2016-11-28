@@ -15,18 +15,17 @@ class EventController extends Controller
         $this->middleware('auth');
     }
 
-    public function addEvent(Request $request)
+    public function addProgram(Request $request)
     {
         $this->validate($request, [
         'event_name' => ['required'],
-        'events_type_id' => ['required'],
         'description' => ['required'],
         ]);
 
         $newEvent = new Event();
         $newEvent->event_name = $request->event_name;
-        $newEvent->events_type_id = $request->events_type_id;
         $newEvent->description = $request->description;
+        $newEvent->events_type_id = $request->events_type_id;
 
         $file = $request->file('thumbnails');
 
@@ -39,16 +38,36 @@ class EventController extends Controller
             mkdir('picUploadTestDir/thumbnails', 0777, true);
         }
 
+        //Create a thumbnail for a program
+
         $file->move('picUploadTestDir/thumbnails/', $filename);
 
         //creating thumbnails of img
 
-        $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(250, 250)->save('picUploadTestDir/thumbnails/' . $filename, 100);
+        $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(480, 360)->save('picUploadTestDir/thumbnails/' . $filename, 100);
+
+        //Create a collage for a program
+
+        $collage = $request->file('collage');
+
+        $collageName = uniqid() .'-'. $collage->getClientOriginalName();
+        $newEvent->collage = $collageName;
+
+        if(!file_exists('picUploadTestDir/collages/'))
+        {
+            mkdir('picUploadTestDir/collages', 0777, true);
+        }
+
+        $collage->move('picUploadTestDir/collages/', $collageName);
+
+        //creating thumbnails of img
+
+        $collage = Image::make('picUploadTestDir/collages/'. $collageName)->resize(1024, 768)->save('picUploadTestDir/collages/' . $collageName, 100);
 
         $newEvent->save();
 
         //Session does not working
-        return back()->with('message', 'New event was created succesfully!');
+        return back()->with('message', 'New program was created successfully!');
 
     }
 
@@ -66,8 +85,16 @@ class EventController extends Controller
             unlink($thumb);
         }
 
+        $collage = 'picUploadTestDir/collages/' . $event->collage;
+
+        if(file_exists($collage))
+        {
+            unlink($collage);
+        }
+
         $event->delete();
-        return back()->with('message', 'Event was deleted successfully!');
+
+        return back()->with('message', 'Program was deleted successfully!');
     }
 
     public function update(Request $request, Event $event)
@@ -92,7 +119,7 @@ class EventController extends Controller
 
             //creating thumbnails of img
 
-            $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(250, 250)->save('picUploadTestDir/thumbnails/' . $filename, 100);
+            $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(480, 360)->save('picUploadTestDir/thumbnails/' . $filename, 100);
 
             $oldThumbPath = 'picUploadTestDir/thumbnails/' . $request->oldThumb;
 
@@ -102,9 +129,36 @@ class EventController extends Controller
             }
         }
 
+        $collage = $request->file('collage');
+
+        if(isset($collage))
+        {
+            //set thumbnail name and move to a folder
+            $collageName = uniqid() . '-' . $collage->getClientOriginalName();
+            $event->collage = $collageName;
+
+            if(!file_exists('picUploadTestDir/collages/'))
+            {
+                mkdir('picUploadTestDir/thumbnails', 0777, true);
+            }
+
+            $collage->move('picUploadTestDir/collages/', $collageName);
+
+            //creating thumbnails of img
+
+            $collage = Image::make('picUploadTestDir/collages/'. $collageName)->resize(1024, 768)->save('picUploadTestDir/collages/' . $collageName, 100);
+
+            $oldCollagePath = 'picUploadTestDir/collages/' . $request->oldCollage;
+
+            if(file_exists($oldCollagePath))
+            {
+                unlink($oldCollagePath);
+            }
+        }
+
         $event->update();
 
-        return back()->with('message', 'Event was updated successfully!');
+        return back()->with('message', 'Program was updated successfully!');
     }
 
 }

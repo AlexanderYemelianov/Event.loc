@@ -7,7 +7,12 @@ use Image;
 use App\Message;
 use App\EventsType;
 use App\Event;
-use App\Photo;
+use App\Gallery;
+use App\Client;
+use App\SocialProject;
+use App\Location;
+use App\News;
+
 
 class HomeController extends Controller
 {
@@ -31,11 +36,9 @@ class HomeController extends Controller
 
     public function events()
     {
-        $events = Event::all()->where('events_type_id', '>', 1);
+        $events = Event::all();
 
-        //request to DB should be optimized
-        $eventsTypes = EventsType::all();
-        return view('admin.events', compact('events', 'eventsTypes'));
+        return view('admin.events', compact('events'));
     }
 
     //Manipulation with messages
@@ -60,6 +63,13 @@ class HomeController extends Controller
 
     }
 
+    public function deleteMessage(Message $message)
+    {
+        $message->delete();
+
+        return back();
+    }
+
     public function checkMessage(Message $message)
     {
         $message->active = 0;
@@ -71,32 +81,38 @@ class HomeController extends Controller
 
     //Gallary
 
-    public function getAllPhoto()
+    public function galleries()
     {
+        $galleries = Gallery::all()->sortByDesc('date');
 
-        $photos = Photo::all();
-
-        $eventsId = Event::all();
-
-        return view('admin.gallery', compact('eventsId', 'photos'));
+        return view('admin.gallery', compact('galleries'));
     }
 
-    public function getPhotoForEvent(Request $request)
+    public function getClients()
     {
+        $clients = Client::all();
 
-        if($request->events_id === "all")
-        {
-
-            return $this->getAllPhoto();
-        }
-        else
-        {
-            $photos = Photo::all()->where('events_id', $request->events_id);
-        }
-
-        $eventsId = Event::all();
-
-        return view('admin.gallery', compact('eventsId', 'photos'));
+        return view('admin.clients', compact('clients'));
     }
 
+    public function socialProjects()
+    {
+        $socialProjects = SocialProject::all();
+
+        return view('admin.socialProjects', compact('socialProjects'));
+    }
+
+    public function getLocations()
+    {
+        $locations = Location::all();
+
+        return view('admin.locations', compact('locations'));
+    }
+
+    public function getNews()
+    {
+        $news = News::all()->sortByDesc('news_date');
+
+        return view('admin.news', compact('news'));
+    }
 }

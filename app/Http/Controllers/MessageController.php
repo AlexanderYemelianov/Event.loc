@@ -20,10 +20,34 @@ class MessageController extends Controller
 
         $message = new Message($request->all());
 
+        if(!filter_var($message->email, FILTER_VALIDATE_EMAIL))
+        {
+            return back()->with('message', 'Вы указали не корректный адрес электронной почты. Воспользуйтесь формой обратной связи еще раз.');
+        }
+
+        if (empty($request->phone))
+        {
+            $message->phone = 'There is no phone';
+        } else
+        {
+            $message->phone = $request->phone;
+        }
+
         $message->save();
 
-        /*return Redirect::route('contacts')->with('message', 'Thank you for your message! We will contact you as soon as possible.');*/
-        return back()->with('message', 'Thank you for your message! We will contact you as soon as possible.');
+        $messagesCreatedAt = Message::all();
+
+        $info = $messagesCreatedAt->sortByDesc('id')->first();
+
+        $to = 'nobody@mail.com';
+        $subject = 'new message from site' . $info->created_at;
+
+        $message = 'Привет красотка,' . "\r\n\r\n" . ' у тебя новое сообщение с сайта от ' . $info->name . $info->lat_name . "\r\n\r\n" . $info->message . "\r\n\r\n" . 'Контактный телефон: ' . $info->phone;
+
+
+        mail($to, $subject, $message);
+
+        return back()->with('message', 'Благодарим за Ваше обращение. Мы свяжемся с Вами в ближайшее время.');
     }
 
 }

@@ -41,11 +41,11 @@ class EventsTypeController extends Controller
 
         //creating thumbnails of img
 
-        $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(250, 250)->save('picUploadTestDir/thumbnails/' . $filename, 100);
+        $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(480, 360)->save('picUploadTestDir/thumbnails/' . $filename, 100);
 
         $newType->save();
 
-        return back()->with('message', 'New events type was created succesfully!');
+        return back()->with('message', 'New events type was created successfully!');
 
     }
 
@@ -56,7 +56,6 @@ class EventsTypeController extends Controller
 
     public function update(Request $request, EventsType $updated)
     {
-
         $updated->type_name = $request->type_name;
         $updated->description = $request->description;
 
@@ -77,7 +76,7 @@ class EventsTypeController extends Controller
 
             //creating thumbnails of img
 
-            $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(250, 250)->save('picUploadTestDir/thumbnails/' . $filename, 100);
+            $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(480, 360)->save('picUploadTestDir/thumbnails/' . $filename, 100);
 
             $oldThumbPath = 'picUploadTestDir/thumbnails/' . $request->oldThumb;
 

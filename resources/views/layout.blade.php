@@ -6,92 +6,78 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Event.loc') }}</title>
+        <title>{{ config('app.name', 'EventLab') }}</title>
 
-        <!-- Part for slideshow staff -->
-        @yield('head')
+        <link href="http://webfonts.ru/import/fontinsc.css" rel="stylesheet">
 
-        <link href="/css/app.css" rel="stylesheet">
+        <!-- Styles for images -->
+        <link rel="stylesheet" type="text/css" href="../css/hovereffect.css" />
 
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/bootstrap.css">
 
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="/js/bootstrap.min.js"></script>
 
     </head>
 
     <body>
 
-    <div id="app">
+    <div id="app" style="overflow:hidden;">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    {{--<a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Event.loc') }}
-                    </a>--}}
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12" align="center">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="../EventLab_logo_2-01.png" height="150px" width="150px">
+                    </a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="margin-top: 30px;" align="center">
+                    <div class="navbar-header">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-left">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/') }}">Главная</a></li>
-                            <li><a href="{{ url('/about') }}">О компании</a></li>
-                            <li><a href="{{ url('/servicies') }}">Что мы делаем</a></li>
-                            <li><a href="{{ url('/clients') }}">Наши клиенты</a></li>
-                            <li><a href="{{ url('/socialprojects') }}">Социальные проекты</a></li>
-                            <li><a href="{{ url('/values') }}">Ценности</a></li>
-                            <li><a href="{{ url('/gallery') }}">Галерея</a></li>
-                            <li><a href="{{ url('/contacts') }}">Контакты</a></li>
-                            {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
-                            {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                        <!-- Collapsed Hamburger -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                            <span>Menu</span>
+                        </button>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li {{ (Request::is('/') ? 'class=active' : '') }}><a href="{{ url('/') }}">Главная</a></li>
+                                <li {{ (Request::is('about') ? 'class=active' : '') }}><a href="{{ url('/about') }}">О компании</a></li>
+                                <li {{ (Request::is('news') ? 'class=active' : '') }}><a href="{{ url('/news') }}">События</a></li>
+                                <li {{ (Request::is('clients') ? 'class=active' : '') }}><a href="{{ url('/clients') }}">Наши клиенты</a></li>
+                                <li {{ (Request::is('socialProjects') ? 'class=active' : '') }}><a href="{{ url('/socialProjects') }}">Социальные проекты</a></li>
+                                <li {{ (Request::is('contacts') ? 'class=active' : '') }}><a href="{{ url('/contacts') }}">Контакты</a></li>
+                                <li {{ (Request::is('gallery') ? 'class=active' : '') }}><a href="{{ url('/gallery') }}">Галерея</a></li>
+                                <li {{ (Request::is('locations') ? 'class=active' : '') }}><a href="{{ url('/locations') }}">Места</a></li>
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
+                                <!-- Authentication Links -->
+                                {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
+                                {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs" align="center" style="margin-top: 50px;">
+                    <a href="{{ url('/contactForm') }}" class="customButton"/>Оставить заявку</a>
+                </div>
+
+                <div class="hidden-lg hidden-md hidden-sm col-xs-12" align="center" style="margin-top: 10px;">
+                    <a href="{{ url('/contactForm') }}" class="customButton"/>Оставить заявку</a>
+                </div>
+
             </div>
+
+
         </nav>
 
         {{--Content section--}}
+
+        <div>
+            @yield('indexContent')
+        </div>
 
         <div class="container">
 
@@ -101,19 +87,33 @@
 
     </div>
 
-        {{--!!!!!!!!!!!!!!!!!!!!Styles of footer should not be there!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!--}}
-        <div class="navbar-fixed-bottom row-fluid">
+        <div class="navbar-fixed-bottom row-fluid" style="background: #ffffff; height: 50px;">
             <div class="navbar-inner">
-                <footer style="width: 100%; height: 60px; background-color: #f5f5f5;">
+                <footer>
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <p class="text-muted">Контакты</p>
+                            <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                                <address style="font-size: 15px;">
+                                    <abbr title="контактыне телефоны">Контакты:</abbr>
+                                    (050) 250-4848 (068) 074-9797 <br>
+                                    <a href="mailto:#">info@eventlab.com.ua</a>
+                                </address>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="right">
-                                <a href="https://vk.com/" target="_blank"><img src="../iconz/vk_2.png" alt="VK"></a>
-                                <a href="https://www.facebook.com/" target="_blank"><img src="../iconz/facebook.png" alt="Facebook"></a>
-                                <a href="https://www.instagram.com/" target="_blank"><img src="../iconz/instagram.png" alt="Instagram"></a>
+
+                            {{--mobile footer--}}
+
+                            <div class="hidden-lg hidden-md hidden-sm col-xs-6">
+                                <address style="font-size: 10px;">
+                                    <abbr title="контактыне телефоны">Контакты:</abbr><br>
+                                    (050) 250-4848 (068) 074-9797 <br>
+                                    <a href="mailto:#">info@eventlab.com.ua</a>
+                                </address>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="right" style="padding-top: 5px;">
+                                <a href="https://vk.com/labkiev" target="_blank"><img src="../iconz/vk_2.png" alt="VK" height="40px"></a>
+                                <a href="https://www.facebook.com/EventLabKiev?fref=ts" target="_blank"><img src="../iconz/facebook.png" alt="Facebook" height="40px"></a>
+                                <a href="https://www.instagram.com/event_lab_kiev" target="_blank"><img src="../iconz/instagram.png" alt="Instagram" height="40px"></a>
                             </div>
                         </div>
                     </div>

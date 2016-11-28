@@ -6,20 +6,35 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\EventsType;
-use App\Photo;
 Use App\Event;
-Use App\Test;
+Use App\Client;
+use App\SocialProject;
+use App\Gallery;
+use App\Location;
+use App\News;
+
+
 class PagesController extends Controller
 {
     public function index()
     {
-        $corpEvents = EventsType::all()->where('class', 1);
 
-        $fashionEvents = EventsType::all()->where('class', 2);
+        $all = EventsType::all();
 
-        $privateEvents = EventsType::all()->where('class', 3);
+        $teamBuilding = $all->where('id', 1);
 
-        return view('pages.index', compact('corpEvents','fashionEvents', 'privateEvents'));
+        $newYear = $all->where('id', 2);
+
+        $conferences = $all->where('id', 3);
+
+        $corpEvents = $all->where('class', 1);
+
+        $fashionEvents = $all->where('class', 2);
+
+        $privateEvents = $all->where('class', 3);
+
+
+        return view('pages.index', compact('teamBuilding' ,'corpEvents','fashionEvents', 'privateEvents', 'newYear', 'conferences'));
     }
 
     public function about()
@@ -27,31 +42,44 @@ class PagesController extends Controller
         return view('pages.about');
     }
 
-    public function servicies()
+    public function news()
     {
-        return view('pages.servicies');
+
+        $allNews = News::all()->sortByDesc('news_date');
+
+        $activeNews = $allNews->where('news_active', '!=', 0);
+
+        $oldNews = $allNews->where('news_active', '=', 0);
+
+        return view('pages.news', compact('activeNews', 'oldNews'));
     }
 
     public function clients()
     {
-        return view('pages.clients');
+        $clients = Client::all();
+
+        return view('pages.clients', compact('clients'));
     }
 
     public function socialProjects()
     {
-        return view('pages.socialProjects');
+        $socialProjects = SocialProject::all();
+
+        return view('pages.socialProjects', compact('socialProjects'));
     }
 
-    public function values()
+    public function locations()
     {
-        return view('pages.values');
+        $locations = Location::all();
+
+        return view('pages.locations', compact('locations'));
     }
 
     public function gallery()
     {
-        $photos = Photo::all();
+        $galleries = Gallery::all()->sortByDesc('date');
 
-        return view('pages.gallery', compact('photos'));
+        return view('pages.gallery', compact('galleries'));
     }
 
     public function contacts()
@@ -59,18 +87,38 @@ class PagesController extends Controller
         return view('pages.contacts');
     }
 
-    public function showType(EventsType $type)
+    public function contactForm()
+    {
+        return view('pages.contactForm');
+    }
+
+    public function teambuildingShow(EventsType $type)
     {
         $type->load('events');
 
+        return view('pages.teambuildingShow', compact('type'));
+    }
+
+    public function showType(EventsType $type)
+    {
         return view('pages.showType', compact('type'));
     }
 
     public function showEvent(Event $event)
     {
-        $events = Event::all()->where('events_type_id', $event->events_type_id);
+        $events = Event::all()->where('id', '!=', $event->id);
 
-       return view('pages.showEvent', compact('event', 'events'));
+        return view('pages.showEvent', compact('event', 'events'));
+    }
+
+    public function projectShow(SocialProject $project)
+    {
+        return view('pages.showProject', compact('project'));
+    }
+
+    public function galleryShow(Gallery $gallery)
+    {
+        return view('pages.galleryShow', compact('gallery'));
     }
 
 }

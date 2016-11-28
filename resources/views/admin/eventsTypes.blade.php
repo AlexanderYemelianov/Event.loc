@@ -6,7 +6,7 @@
 
     <form action="/addNewType" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
+        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 
         <div class="form-group">
             <input type="text" name="type_name" required placeholder="Name of the new event type" class="form-control">
@@ -26,6 +26,7 @@
 
         </div>
 
+        <h5>Choose an image for a link</h5>
         <div class="form-group">
             <input type="file" name="thumbnails" id="thumbnails" required>
         </div>
@@ -40,23 +41,25 @@
         <div class="panel-body">
             <table class="table table-striped" style="width: 100%">
                 <tr>
-                    <td style="width: 15%">Events Type</td>
-                    <td style="width: 55%">Description</td>
-                    <td style="width: 15%">Date</td>
+                    <td style="width: 25%">Events Type</td>
+                    <td style="width: 60%">Description</td>
                     <td style="width: 6%">Edit</td>
-                    <td style="width: 9%">Edit/Delete</td>
+                    <td style="width: 9%">Delete</td>
                 </tr>
                 @foreach($eventsTypes as $item)
 
                 <tr>
-                    <td><?=$item['type_name'];?></td>
+                    <td>{{ $item->type_name }}</td>
                     <td><?=nl2br(mb_substr($item['description'],0,200)) . '...';?></td>
-                    <td><?=$item['created_at'];?></td>
                     <td>
-                        <a href="eventTypeEdit/<?=$item['id'];?>"><button class="btn btn-sm btn-warning">Edit</button></a>
+                        <a href="eventTypeEdit/{{ $item->id }}"><button class="btn btn-sm btn-warning">Edit</button></a>
                     </td>
                     <td>
-                        <a href="eventTypeDelete/<?=$item['id'];?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger">Delete</button></a>
+                        @if($item->id > 3)
+                            <a href="eventTypeDelete/{{ $item->id }}" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger">Delete</button></a>
+                        @else
+
+                        @endif
                     </td>
                 </tr>
 

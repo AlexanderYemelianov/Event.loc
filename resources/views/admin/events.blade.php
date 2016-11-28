@@ -2,36 +2,39 @@
 
 @section('content')
 
-    <h3>Add new event</h3>
+    <h3>Add new program to Teambilding / Тренинги (Otdoor)</h3>
 
-    <form action="/addEvent" method="post" enctype="multipart/form-data">
+    <form action="/addProgram" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
+        <input type="hidden" name="events_type_id" value="1">
+        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 
         <div class="form-group">
-            <input type="text" name="event_name" required class="form-control" placeholder="Name of event">
+            <input type="text" name="event_name" required class="form-control" placeholder="Name of a new program">
         </div>
 
         <div class="form-group">
+            <textarea name="description" class="form-control" required placeholder="Description of new program"></textarea>
+        </div>
 
-            <select class="form-control" required name="events_type_id">
-                @foreach($eventsTypes as $item){ ?>
-                <option value="<?=$item['id']?>"><?=$item['type_name']?></option>
-                @endforeach
-            </select>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <h5>Choose an image for a link</h5>
+                <div class="form-group">
+                    <input type="file" name="thumbnails" id="thumbnails" required>
+                </div>
+            </div>
 
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <h5>Choose a collage</h5>
+                <div class="form-group">
+                    <input type="file" name="collage" id="collage" required>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
-            <textarea name="description" class="form-control" required placeholder="Description of new event"></textarea>
-        </div>
-
-        <div class="form-group">
-            <input type="file" name="thumbnails" id="thumbnails" required>
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Add new event</button>
+            <button type="submit" class="btn btn-primary">Add new program</button>
         </div>
 
     </form>
@@ -41,10 +44,9 @@
             <table class="table table-striped" style="width: 100%">
                 <tr>
                     <td style="width: 15%">Event Name</td>
-                    <td style="width: 55%">Description</td>
-                    <td style="width: 15%">Date</td>
+                    <td style="width: 70%">Description</td>
                     <td style="width: 6%">Edit</td>
-                    <td style="width: 9%">Edit/Delete</td>
+                    <td style="width: 9%">Delete</td>
                 </tr>
 
                 @foreach($events as $item)
@@ -52,7 +54,6 @@
                 <tr>
                     <td><?=$item['event_name'];?></td>
                     <td><?=nl2br(mb_substr($item['description'],0,200)) . '...';?></td>
-                    <td><?=$item['created_at'];?></td>
                     <td>
                         <a href="editEvent/<?=$item['id'];?>"><button class="btn btn-sm btn-warning">Edit</button></a>
                     </td>
