@@ -64,7 +64,7 @@
                     <a href="{{ url('/contactForm') }}" class="customButton"/>Оставить заявку</a>
                 </div>
 
-                <div class="hidden-lg hidden-md hidden-sm col-xs-12" align="center" style="margin-top: 10px;">
+                <div class="hidden-lg hidden-md hidden-sm col-xs-12" align="center" style="margin-top: 10px; margin-bottom: 20px;">
                     <a href="{{ url('/contactForm') }}" class="customButton"/>Оставить заявку</a>
                 </div>
 
