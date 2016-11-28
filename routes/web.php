@@ -61,6 +61,10 @@ Route::group(['middleware' => ['web']], function(){
     Route::post('addTypesPhoto', 'TypesPhotoController@addTypesPhoto');
     Route::get('typesPhotoDelete/{photo}', 'TypesPhotoController@photoDelete');
 
+    Route::get('newYearPrograms', 'HomeController@getNewYearPrograms');
+    Route::post('addNYProgram', 'NewYearsController@addNYProgram');
+    Route::get('deleteNYProgram/{newYear}', 'NewYearsController@delete');
+
     Route::get('/', 'PagesController@index');
     Route::get('about', 'PagesController@about');
     Route::get('news', 'PagesController@news');
@@ -75,15 +79,11 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('eventShow/{event}', 'PagesController@showEvent');
     Route::get('galleryShow/{gallery}', 'PagesController@galleryShow');
     Route::get('contactForm', 'PagesController@contactForm');
+    Route::get('newYearProgramShow', 'PagesController@newYearProgramShow');
 
     Route::get('photoDelete/{photo}', 'PhotoController@photoDelete');
 
-
-    //Static pge with custom styles
-
-    Route::get('newYearShow', function(){
-        return view('pages.newYear');
-    });
+    //Static pages with custom styles
 
     Route::get('conferencesShow', function(){
         return view('pages.conferences');

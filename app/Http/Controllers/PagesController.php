@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\NewYear;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -97,6 +98,13 @@ class PagesController extends Controller
         $type->load('events');
 
         return view('pages.teambuildingShow', compact('type'));
+    }
+
+    public function newYearProgramShow()
+    {
+        $newYearProgram = NewYear::all();
+
+        return view('pages.newYearProgramShow', compact('newYearProgram'));
     }
 
     public function showType(EventsType $type)

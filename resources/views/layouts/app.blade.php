@@ -57,6 +57,7 @@
                         @else
                             <li><a href="{{ url('/eventsTypes') }}">Events types</a></li>
                             <li><a href="{{ url('/programs') }}">TeamBuilding programs</a></li>
+                            <li><a href="{{ url('/newYearPrograms') }}">NY programs</a></li>
                             <li><a href="{{ url('/getSocialProjects') }}">SocialProjects</a></li>
                             <li><a href="{{ url('/getClients') }}">Clients</a></li>
                             <li><a href="{{ url('/galleries') }}">Gallary</a></li>

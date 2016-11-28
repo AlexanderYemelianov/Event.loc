@@ -21,7 +21,7 @@
 
         @foreach($newYear as $type)
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding: 1px 1px 0 1px;">
-                <a href="/newYearShow">
+                <a href="/newYearProgramShow">
                     <div class="hovereffect">
                         <img class="img-responsive" src="../picUploadTestDir/thumbnails/{{ $type->thumbnail }}" alt="{{ substr($type->thumbnail, 25)}}">
                         <div class="overlay">

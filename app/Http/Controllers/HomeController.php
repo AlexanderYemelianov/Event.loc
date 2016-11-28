@@ -12,6 +12,7 @@ use App\Client;
 use App\SocialProject;
 use App\Location;
 use App\News;
+use App\NewYear;
 
 
 class HomeController extends Controller
@@ -39,6 +40,48 @@ class HomeController extends Controller
         $events = Event::all();
 
         return view('admin.events', compact('events'));
+    }
+
+    public function galleries()
+    {
+        $galleries = Gallery::all()->sortByDesc('date');
+
+        return view('admin.gallery', compact('galleries'));
+    }
+
+    public function getClients()
+    {
+        $clients = Client::all();
+
+        return view('admin.clients', compact('clients'));
+    }
+
+    public function socialProjects()
+    {
+        $socialProjects = SocialProject::all();
+
+        return view('admin.socialProjects', compact('socialProjects'));
+    }
+
+    public function getLocations()
+    {
+        $locations = Location::all();
+
+        return view('admin.locations', compact('locations'));
+    }
+
+    public function getNews()
+    {
+        $news = News::all()->sortByDesc('news_date');
+
+        return view('admin.news', compact('news'));
+    }
+
+    public function getNewYearPrograms()
+    {
+        $newYearPrograms = NewYear::all();
+
+        return view('admin.newYearPrograms', compact('newYearPrograms'));
     }
 
     //Manipulation with messages
@@ -77,42 +120,5 @@ class HomeController extends Controller
         $message->save();
 
         return back();
-    }
-
-    //Gallary
-
-    public function galleries()
-    {
-        $galleries = Gallery::all()->sortByDesc('date');
-
-        return view('admin.gallery', compact('galleries'));
-    }
-
-    public function getClients()
-    {
-        $clients = Client::all();
-
-        return view('admin.clients', compact('clients'));
-    }
-
-    public function socialProjects()
-    {
-        $socialProjects = SocialProject::all();
-
-        return view('admin.socialProjects', compact('socialProjects'));
-    }
-
-    public function getLocations()
-    {
-        $locations = Location::all();
-
-        return view('admin.locations', compact('locations'));
-    }
-
-    public function getNews()
-    {
-        $news = News::all()->sortByDesc('news_date');
-
-        return view('admin.news', compact('news'));
     }
 }

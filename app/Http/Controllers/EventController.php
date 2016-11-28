@@ -160,5 +160,4 @@ class EventController extends Controller
 
         return back()->with('message', 'Program was updated successfully!');
     }
-
 }
