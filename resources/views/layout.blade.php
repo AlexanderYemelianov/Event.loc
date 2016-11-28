@@ -29,11 +29,11 @@
             <div class="row">
                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12" align="center">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="../EventLab_logo_2-01.png" height="150px" width="150px">
+                        <img src="../EventLab_logo_2-01.png" height="130px" width="90px">
                     </a>
                 </div>
 
-                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="margin-top: 30px;" align="center">
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="margin-top: 2%;" align="center">
                     <div class="navbar-header">
 
                         <!-- Collapsed Hamburger -->
