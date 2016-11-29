@@ -49,7 +49,7 @@
                         <td>{{ $item['gallery_name'] }}</td>
                         <td>{{ $item['date'] }}</td>
                         <td>{{ nl2br(mb_substr($item['gallery_description'],0,300)) . '...' }}</td>
-                        <td><img src="picUploadTestDir/socialProjects/{{ $item['thumbnail'] }}" alt="{{ $item['thumbnail'] }}" height="100px"></td>
+                        <td><img src="picUploadTestDir/gallery/{{ $item['thumbnail'] }}" alt="{{ $item['thumbnail'] }}" height="100px"></td>
                         <td>
                             <a href="editGallery/{{ $item['id'] }}"><button class="btn btn-sm btn-warning">Edit</button></a>
                         </td>
