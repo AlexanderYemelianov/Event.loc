@@ -23,7 +23,7 @@
 
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding: 0 5px 10px 5px; position: relative;">
 
-                <img  class="img-responsive" src="../picUploadTestDir/newYearPhotos/{{ $program->photo }}" alt="{{ $program->name }}" style="position: relative; height: 100%; width:100%;" class="img-responsive">
+                <img  class="img-responsive" src="../picUploadTestDir/newYearPhotos/{{ $program->photo }}" alt="{{ $program->name }}" style="position: relative; height: 100%; width:100%;">
                 <div style="position: absolute; top: 45%; background: #ffffff; max-width: 300px;" align="center">
                     <h4>{{ $program->name }}</h4>
                     <p style="font-size: 12px;">{{ $program->description }}</p>
@@ -31,7 +31,8 @@
             </div>
 
         @endforeach
-        
+    </div>
+
     {{--Button--}}
 
     <div class="row">
@@ -41,7 +42,7 @@
         </div>
 
         <div class="hidden-lg hidden-md col-sm-12 hidden-xs" align="center" style="margin-top: 50px;">
-            <a href="{{ url('/contactForm') }}" class="newYearButton fontSM">Заказать подробное описание программы!</a>
+            <a href="{{ url('/contactForm') }}resources/views/pages/newYearProgramShow.blade.php" class="newYearButton fontSM">Заказать подробное описание программы!</a>
         </div>
 
         <div class="hidden-lg hidden-md hidden-sm col-xs-12" align="center" style="margin-top: 50px;">
