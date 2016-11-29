@@ -40,7 +40,7 @@ class GalleriesController extends Controller
 
         //creating thumbnails of img
 
-        $thumb = Image::make('picUploadTestDir/gallery/'. $thumbName)->resize(480, 360)->save('picUploadTestDir/socialProjects/' . $thumbName, 100);
+        $thumb = Image::make('picUploadTestDir/gallery/' . $thumbName)->resize(480, 360)->save('picUploadTestDir/gallery/' . $thumbName, 100);
 
         $newGallery->save();
 
@@ -60,7 +60,6 @@ class GalleriesController extends Controller
         if(!empty($photoCheck))
         {
             return back()->with('message', 'Gallery have some photo. Please delete all photo from Gallery!');
-
         }
         else
         {
