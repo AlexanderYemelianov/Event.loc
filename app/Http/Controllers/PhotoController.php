@@ -42,7 +42,7 @@ class PhotoController extends Controller
         $file->move('picUploadTestDir/gallery/', $filename);
 
 
-        $file = Image::make('picUploadTestDir/gallery/'. $filename)->resize(480, 360)->save('picUploadTestDir/gallery/' . $filename, 80);
+        $file = Image::make('picUploadTestDir/gallery/'. $filename)->resize(1024, 768)->save('picUploadTestDir/gallery/' . $filename, 100);
 
         //save img path to DB
 
