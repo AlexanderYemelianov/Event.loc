@@ -6,7 +6,7 @@
 
     <div class="row">
         @foreach($galleries as $gallery)
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 10px;">
                 <a href="/galleryShow/{{ $gallery->id }}">
                     <div class="hovereffect">
                         <img class="img-responsive" src="picUploadTestDir/gallery/{{ $gallery->thumbnail }}" alt="{{ substr($gallery->thumbnail, 25)}}">
