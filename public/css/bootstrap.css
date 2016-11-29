@@ -6840,7 +6840,6 @@ button.close {
   filter: dropshadow(color=#cf811b, offx=1, offy=-3);
 }
 
-
 .newYearButton{
   text-decoration:none; text-align:center;
   padding:11px 32px;
@@ -6926,6 +6925,14 @@ button.close {
 
 .fontXS {
   font:13px "Courier New", Courier, monospace;
+}
+
+.aboutPageText {
+  height: 120px;
+}
+
+#aboutPage img{
+  max-height: 150px;
 }
 
 
