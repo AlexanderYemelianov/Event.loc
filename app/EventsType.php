@@ -13,4 +13,9 @@ class EventsType extends Model
         return $this->hasMany(Event::class);
     }
 
+    public function photos()
+    {
+        return $this->hasMany(TypesPhoto::class);
+    }
+
 }
