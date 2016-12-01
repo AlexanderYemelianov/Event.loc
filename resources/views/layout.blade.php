@@ -51,10 +51,7 @@
                                 <li {{ (Request::is('contacts') ? 'class=active' : '') }}><a href="{{ url('/contacts') }}">Контакты</a></li>
                                 <li {{ (Request::is('gallery') ? 'class=active' : '') }}><a href="{{ url('/gallery') }}">Галерея</a></li>
                                 <li {{ (Request::is('locations') ? 'class=active' : '') }}><a href="{{ url('/locations') }}">Места</a></li>
-
-                                <!-- Authentication Links -->
-                                {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
-                                {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
+                                <li {{ (Request::is('review') ? 'class=active' : '') }}><a href="{{ url('/review') }}">Отзывы</a></li>
                             </ul>
                         </div>
                     </div>

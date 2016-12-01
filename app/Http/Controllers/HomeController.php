@@ -13,6 +13,7 @@ use App\SocialProject;
 use App\Location;
 use App\News;
 use App\NewYear;
+use App\Review;
 
 
 class HomeController extends Controller
@@ -75,6 +76,13 @@ class HomeController extends Controller
         $news = News::all()->sortByDesc('news_date');
 
         return view('admin.news', compact('news'));
+    }
+
+    public function getReviews()
+    {
+        $reviews = Review::all()->sortByDesc('review_date');
+
+        return view('admin.reviews', compact('reviews'));
     }
 
     public function getNewYearPrograms()

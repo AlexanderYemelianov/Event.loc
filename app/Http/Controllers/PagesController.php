@@ -13,7 +13,7 @@ use App\SocialProject;
 use App\Gallery;
 use App\Location;
 use App\News;
-
+use App\Review;
 
 class PagesController extends Controller
 {
@@ -67,6 +67,13 @@ class PagesController extends Controller
         $socialProjects = SocialProject::all();
 
         return view('pages.socialProjects', compact('socialProjects'));
+    }
+
+    public function review()
+    {
+        $reviews = Review::all();
+
+        return view('pages.reviews', compact('reviews'));
     }
 
     public function locations()

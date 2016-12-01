@@ -48,6 +48,10 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('deleteNews/{news}', 'NewsController@deleteNews');
     Route::get('changeStatusNews/{news}', 'NewsController@changeStatusNews');
 
+    Route::get('getReviews', 'HomeController@getReviews');
+    Route::post('addReview', 'ReviewController@addReview');
+    Route::get('deleteReview/{review}', 'ReviewController@deleteReview');
+
     Route::post('addNewType', 'EventsTypeController@addNewType');
     Route::get('eventTypeEdit/{type}', 'EventsTypeController@edit');
     Route::post('eventTypeUpdate/{updated}', 'EventsTypeController@update');
@@ -80,6 +84,7 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('galleryShow/{gallery}', 'PagesController@galleryShow');
     Route::get('contactForm', 'PagesController@contactForm');
     Route::get('newYearProgramShow', 'PagesController@newYearProgramShow');
+    Route::get('review', 'PagesController@review');
 
     Route::post('imgUpload', 'GalleriesContentController@imgUpload');
     Route::get('photoDelete/{photo}', 'GalleriesContentController@photoDelete');

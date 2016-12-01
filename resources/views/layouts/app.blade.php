@@ -63,6 +63,7 @@
                             <li><a href="{{ url('/galleries') }}">Gallary</a></li>
                             <li><a href="{{ url('/getLocations') }}">Locations</a></li>
                             <li><a href="{{ url('/getNews') }}">Events</a></li>
+                            <li><a href="{{ url('/getReviews') }}">Reviews</a></li>
                             <li><a href="{{ url('/getMessages') }}">Messages</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
