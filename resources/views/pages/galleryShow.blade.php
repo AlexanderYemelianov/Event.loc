@@ -11,7 +11,7 @@
 
     <div class="row">
 
-        @if(isset($gallery->photos[0]['photo_name']))
+        @if($gallery->photos->count() >= 1)
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12" style="padding: 0 5px 10px 5px;">
                 <!-- Carousel -->
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -19,7 +19,7 @@
                     {{--<ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>git
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
                     </ol>--}}
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
@@ -53,7 +53,7 @@
 
         @endif
 
-        @if(isset($gallery->videos[0]['video_name']))
+        @if($gallery->videos->count() >= 1)
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
                     @foreach($gallery->videos as $video)

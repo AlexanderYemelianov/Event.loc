@@ -60,6 +60,10 @@ class GalleriesController extends Controller
         if(!empty($photoCheck))
         {
             return back()->with('message', 'Gallery have some photo. Please delete all photo from Gallery!');
+
+        }elseif ($gallery->videos->count() != 0)
+        {
+            return back()->with('message', 'Gallery have some video. Please delete all video from Gallery!');
         }
         else
         {

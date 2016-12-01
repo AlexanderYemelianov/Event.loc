@@ -133,7 +133,7 @@ class PagesController extends Controller
 
     public function galleryShow(Gallery $gallery)
     {
-        return view('pages.galleryShow', compact('gallery'));
+         return view('pages.galleryShow', compact('gallery'));
     }
 
 }
