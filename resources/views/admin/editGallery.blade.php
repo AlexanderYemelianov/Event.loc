@@ -6,7 +6,7 @@
 
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 
-            <h3>Here you can edit <b> {{  $gallery->gallery_name }}</b></h3>
+            <h3>Here you can edit <b> {{  $gallery->gallery_name }}</b> gallery</h3>
 
             <form action="/galleryUpdate/ {{  $gallery->id }}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -42,11 +42,13 @@
 
     </div>
 
+    <hr>
+
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-            <h3>Here you can manage photos</h3>
+        <h3 align="center">Here you can add photos and video</h3>
 
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <form action="/imgUpload" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
@@ -59,20 +61,47 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Add photo</button>
                 </div>
-
             </form>
 
         </div>
 
-        @foreach($gallery->photos as $photo)
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <form action="/videoUpload" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="gallery_id" value="{{ $gallery->id }}">
 
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <img src="../picUploadTestDir/gallery/{{ $photo->photo_name }}" class="img-responsive img-rounded" alt="{{ $photo->photo_name }}">
-                <a href="/photoDelete/{{ $photo->id}}" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger btn-block">Delete photo</button></a>
-            </div>
+                <div class="form-group">
+                    <input type="text" name="video_name" id="photo_name" class="form-control" required>
+                </div>
 
-        @endforeach
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add video</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            @foreach($gallery->photos as $photo)
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <img src="../picUploadTestDir/gallery/{{ $photo->photo_name }}" class="img-responsive img-rounded" alt="{{ $photo->photo_name }}">
+                    <a href="/photoDelete/{{ $photo->id}}" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger btn-block">Delete photo</button></a>
+                </div>
+            @endforeach
+        </div>
+
+        <hr>
+
+        <div class="row">
+            @foreach($gallery->videos as $video)
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" src="{{ $video->video_name }}"></iframe>
+                    </div>
+                    <a href="/videoDelete/{{ $video->id }}" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger btn-block">Delete video</button></a>
+                </div>
+            @endforeach
+        </div>
+
     </div>
-
 
 @endsection

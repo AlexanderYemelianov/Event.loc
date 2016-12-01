@@ -81,7 +81,10 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('contactForm', 'PagesController@contactForm');
     Route::get('newYearProgramShow', 'PagesController@newYearProgramShow');
 
-    Route::get('photoDelete/{photo}', 'PhotoController@photoDelete');
+    Route::post('imgUpload', 'GalleriesContentController@imgUpload');
+    Route::get('photoDelete/{photo}', 'GalleriesContentController@photoDelete');
+    Route::post('videoUpload', 'GalleriesContentController@videoUpload');
+    Route::get('videoDelete/{video}', 'GalleriesContentController@videoDelete');
 
     //Static pages with custom styles
 
@@ -94,8 +97,6 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('register', function(){
         return view('auth.register');
     });
-
-    Route::post('imgUpload', 'PhotoController@imgUpload');
 
 });
 
