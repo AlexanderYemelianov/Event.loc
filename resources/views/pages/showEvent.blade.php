@@ -5,11 +5,11 @@
     <h3 align="center">{{ $event->event_name }}</h3>
 
     <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
             <img class="img-responsive" src="../picUploadTestDir/collages/{{ $event->collage }}" alt="{{ substr($event->thumbnails,24) }}">
         </div>
 
-        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
             <p align="justify"><?=nl2br($event->description);?></p>
         </div>
     </div>
