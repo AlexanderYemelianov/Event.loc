@@ -37,7 +37,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
             <div class="aboutPageText">
                 <h3>Не зависим от курса</h3>
-                <p>Всегда люльные и адаптируемся под любой бюджет</p>
+                <p>Всегда лояльные и адаптируемся под любой бюджет</p>
             </div>
             <img class="img-responsive" src="../picUploadTestDir/aboutPage/2.png">
         </div>
