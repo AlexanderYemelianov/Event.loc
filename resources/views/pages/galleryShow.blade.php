@@ -23,17 +23,17 @@
                     </ol>--}}
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <p align="center"><img class="first-slide img-responsive" width="100%"
-                                                   src="../picUploadTestDir/gallery/{{ $gallery->thumbnail }}"
-                                                   alt="{{ substr($gallery->thumbnail, 25)}}"></p>
+                            <img class="first-slide img-responsive" width="100%"
+                                   src="../picUploadTestDir/gallery/{{ $gallery->thumbnail }}"
+                                   alt="{{ substr($gallery->thumbnail, 25)}}">
                         </div>
 
                         @foreach($gallery->photos as $photo)
                             <div class="item">
-                                <p align="center"><img class="img-responsive" width="100%"
-                                                       src="../picUploadTestDir/gallery/{{ $photo->photo_name }}"
-                                                       alt="{{ $photo->display_name }}"></p>
-                            </div>
+                                <img class="img-responsive" width="100%"
+                                   src="../picUploadTestDir/gallery/{{ $photo->photo_name }}"
+                                   alt="{{ $photo->display_name }}">
+                             </div>
                         @endforeach
 
                     </div>
