@@ -128,7 +128,23 @@ class PagesController extends Controller
 
     public function projectShow(SocialProject $project)
     {
-        return view('pages.showProject', compact('project'));
+        $photos = array();
+        $videos = array();
+
+        foreach($project->content as $content)
+        {
+
+            if(!empty($content->content) && substr($content->content,0,5) != 'https')
+            {
+                $photos[] = $content->content;
+
+            }elseif(!empty($content->content))
+            {
+                $videos[] = $content->content;
+            }
+        }
+
+        return view('pages.showProject', compact('project', 'photos', 'videos'));
     }
 
     public function galleryShow(Gallery $gallery)

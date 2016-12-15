@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h3>Add new photo</h3>
+    <h3>Add new Gallery</h3>
 
     <form action="/addGallery" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -86,7 +86,7 @@ class GalleriesController extends Controller
         return view('admin.editGallery', compact('gallery'));
     }
 
-    public function galleryUpdate(Request $request,Gallery  $gallery)
+    public function galleryUpdate(Request $request,Gallery $gallery)
     {
         $gallery->gallery_name = $request->gallery_name;
         $gallery->gallery_description = $request->gallery_description;

@@ -39,28 +39,14 @@ class SocialProjectsController extends Controller
 
         //creating thumbnails of img
 
-        $thumb = Image::make('picUploadTestDir/socialProjects/'. $thumbName)->resize(480, 360)->save('picUploadTestDir/socialProjects/' . $thumbName, 100);
-
-        //Set a collage
-
-        $collage = $request->file('collage');
-
-        //set thumbnail name and move to a folder
-        $collageName = uniqid() . '-' . $collage->getClientOriginalName();
-        $newProject->collage = $collageName;
-
-        $collage->move('picUploadTestDir/socialProjects/', $collageName);
-
-        //creating thumbnails of img
-
-        $col= Image::make('picUploadTestDir/socialProjects/'. $collageName)->resize(1024, 768)->save('picUploadTestDir/socialProjects/' . $collageName, 100);
+        $thumb = Image::make('picUploadTestDir/socialProjects/'. $thumbName)->resize(1024, 768)->save('picUploadTestDir/socialProjects/' . $thumbName, 100);
 
         $newProject->save();
 
         return back()->with('message', 'New social project was created successfully!');
     }
 
-    public function deleteProject(SocialProject $project)
+    public function deleteSocialProject(SocialProject $project)
     {
         $thumb = 'picUploadTestDir/socialProjects/' . $project->thumbnail;
 
@@ -69,15 +55,51 @@ class SocialProjectsController extends Controller
             unlink($thumb);
         }
 
-        $collage = 'picUploadTestDir/socialProjects/' . $project->collage;
-
-        if(file_exists($collage))
-        {
-            unlink($collage);
-        }
-
-        $project->delete();
+        /*Social project content check*/
 
         return back()->with('message', 'Social project was deleted successfully!');
+    }
+
+    public function editSocialProject(SocialProject $project)
+    {
+
+        return view('admin.editSocialProject', compact('project'));
+    }
+
+    public function socialProjectUpdate(Request $request, SocialProject $project)
+    {
+        $project->project_name = $request->project_name;
+        $project->description = $request->description;
+
+        $file = $request->file('thumbnail');
+
+        if(isset($file))
+        {
+            //set thumbnail name and move to a folder
+            $filename = uniqid() . '_background_' . $file->getClientOriginalName();
+            $project->thumbnail = $filename;
+
+            if(!file_exists('picUploadTestDir/socialProjects/'))
+            {
+                mkdir('picUploadTestDir/socialProjects', 0777, true);
+            }
+
+            $file->move('picUploadTestDir/socialProjects/', $filename);
+
+            //creating thumbnails of img
+
+            $thumb = Image::make('picUploadTestDir/socialProjects/'. $filename)->resize(1024, 768)->save('picUploadTestDir/socialProjects/' . $filename, 100);
+
+            $oldThumbPath = 'picUploadTestDir/socialProjects/' . $request->oldThumb;
+
+            if(file_exists($oldThumbPath))
+            {
+                unlink($oldThumbPath);
+            }
+        }
+
+        $project->update();
+
+        return back()->with('message', 'Social Project was updated successfully!');
     }
 }

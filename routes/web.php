@@ -31,13 +31,25 @@ Route::group(['middleware' => ['web']], function(){
 
     Route::get('getSocialProjects', 'HomeController@socialProjects');
     Route::post('addProject', 'SocialProjectsController@addProject');
-    Route::get('deleteProject/{project}', 'SocialProjectsController@deleteProject');
+    Route::get('editSocialProject/{project}', 'SocialProjectsController@editSocialProject');
+    Route::get('deleteSocialProject/{project}', 'SocialProjectsController@deleteSocialProject');
+    Route::post('socialProjectUpdate/{project}', 'SocialProjectsController@socialProjectUpdate');
+
+    Route::post('socialProjectPhotoAdd', 'SocialProjectsContentController@socialProjectPhotoAdd');
+    Route::post('socialProjectVideoAdd', 'SocialProjectsContentController@socialProjectVideoAdd');
+    Route::get('socialProjectPhotoDelete/{photo}', 'SocialProjectsContentController@socialProjectPhotoDelete');
+    Route::get('socialProjectVideoDelete/{video}', 'SocialProjectsContentController@socialProjectVideoDelete');
 
     Route::get('galleries', 'HomeController@galleries');
     Route::get('editGallery/{gallery}', 'GalleriesController@editGallery');
     Route::post('addGallery', 'GalleriesController@addGallery');
     Route::get('deleteGallery/{gallery}', 'GalleriesController@deleteGallery');
     Route::post('galleryUpdate/{gallery}', 'GalleriesController@galleryUpdate');
+
+    Route::post('imgUpload', 'GalleriesContentController@imgUpload');
+    Route::get('photoDelete/{photo}', 'GalleriesContentController@photoDelete');
+    Route::post('videoUpload', 'GalleriesContentController@videoUpload');
+    Route::get('videoDelete/{video}', 'GalleriesContentController@videoDelete');
 
     Route::get('getLocations', 'HomeController@getLocations');
     Route::post('addLocation', 'LocationController@addLocation');
@@ -85,11 +97,6 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('contactForm', 'PagesController@contactForm');
     Route::get('newYearProgramShow', 'PagesController@newYearProgramShow');
     Route::get('review', 'PagesController@review');
-
-    Route::post('imgUpload', 'GalleriesContentController@imgUpload');
-    Route::get('photoDelete/{photo}', 'GalleriesContentController@photoDelete');
-    Route::post('videoUpload', 'GalleriesContentController@videoUpload');
-    Route::get('videoDelete/{video}', 'GalleriesContentController@videoDelete');
 
     //Static pages with custom styles
 
