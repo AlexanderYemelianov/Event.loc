@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Event;
+use App\EventsPhoto;
 use Image;
 
 class EventController extends Controller
@@ -44,25 +45,7 @@ class EventController extends Controller
 
         //creating thumbnails of img
 
-        $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(480, 360)->save('picUploadTestDir/thumbnails/' . $filename, 100);
-
-        //Create a collage for a program
-
-        $collage = $request->file('collage');
-
-        $collageName = uniqid() .'-'. $collage->getClientOriginalName();
-        $newEvent->collage = $collageName;
-
-        if(!file_exists('picUploadTestDir/collages/'))
-        {
-            mkdir('picUploadTestDir/collages', 0777, true);
-        }
-
-        $collage->move('picUploadTestDir/collages/', $collageName);
-
-        //creating thumbnails of img
-
-        $collage = Image::make('picUploadTestDir/collages/'. $collageName)->resize(1024, 768)->save('picUploadTestDir/collages/' . $collageName, 100);
+        $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(1024, 768)->save('picUploadTestDir/thumbnails/' . $filename, 100);
 
         $newEvent->save();
 
@@ -78,23 +61,25 @@ class EventController extends Controller
 
     public function delete(Event $event)
     {
-        $thumb = 'picUploadTestDir/thumbnails/' . $event->thumbnails;
 
-        if(file_exists($thumb))
+        if($event->photos->isEmpty())
         {
-            unlink($thumb);
+
+            $thumb = 'picUploadTestDir/thumbnails/' . $event->thumbnails;
+
+            if(file_exists($thumb))
+            {
+                unlink($thumb);
+            }
+
+            $event->delete();
+
+            return back()->with('message', 'Program was deleted successfully!');
+        }else
+        {
+            return back()->with('message', 'Please delete all photos first!');
         }
 
-        $collage = 'picUploadTestDir/collages/' . $event->collage;
-
-        if(file_exists($collage))
-        {
-            unlink($collage);
-        }
-
-        $event->delete();
-
-        return back()->with('message', 'Program was deleted successfully!');
     }
 
     public function update(Request $request, Event $event)
@@ -129,35 +114,61 @@ class EventController extends Controller
             }
         }
 
-        $collage = $request->file('collage');
-
-        if(isset($collage))
-        {
-            //set thumbnail name and move to a folder
-            $collageName = uniqid() . '-' . $collage->getClientOriginalName();
-            $event->collage = $collageName;
-
-            if(!file_exists('picUploadTestDir/collages/'))
-            {
-                mkdir('picUploadTestDir/thumbnails', 0777, true);
-            }
-
-            $collage->move('picUploadTestDir/collages/', $collageName);
-
-            //creating thumbnails of img
-
-            $collage = Image::make('picUploadTestDir/collages/'. $collageName)->resize(1024, 768)->save('picUploadTestDir/collages/' . $collageName, 100);
-
-            $oldCollagePath = 'picUploadTestDir/collages/' . $request->oldCollage;
-
-            if(file_exists($oldCollagePath))
-            {
-                unlink($oldCollagePath);
-            }
-        }
-
         $event->update();
 
         return back()->with('message', 'Program was updated successfully!');
+    }
+
+    public function eventPhotoAdd(Request $request)
+    {
+        $this->validate($request, [
+            'photo' => ['required'],
+            'event_id' => ['required'],
+        ]);
+
+        //get all data from a form
+
+        $newPhoto = new EventsPhoto();
+
+        $newPhoto->event_id = $request->event_id;
+
+        //get file from a request
+
+        $file = $request->file('photo');
+
+        //set file name
+        $filename = uniqid() . ' - ' . $file->getClientOriginalName();
+        $newPhoto->photo = $filename;
+
+        //move file to correct location
+
+        if(!file_exists('picUploadTestDir/eventsPhoto'))
+        {
+            mkdir('picUploadTestDir/eventsPhoto', 0777, true);
+        }
+        $file->move('picUploadTestDir/eventsPhoto/', $filename);
+
+
+        $file = Image::make('picUploadTestDir/eventsPhoto/'. $filename)->resize(1024, 768)->save('picUploadTestDir/eventsPhoto/' . $filename, 100);
+
+        //save img path to DB
+
+        $newPhoto->save();
+
+        return back()->with('message', 'Img was uploaded successfully!');
+    }
+
+    public function eventPhotoDelete(EventsPhoto $event)
+    {
+        $photoToDelete = 'picUploadTestDir/eventsPhoto/' . $event->photo;
+
+        if(file_exists($photoToDelete))
+        {
+            unlink($photoToDelete);
+        }
+
+        $event->delete();
+
+        return back()->with('message', 'Photo was deleted successfully!');
     }
 }

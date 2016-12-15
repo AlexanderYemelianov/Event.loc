@@ -73,6 +73,8 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('editEvent/{event}', 'EventController@edit');
     Route::post('eventUpdate/{event}', 'EventController@update');
     Route::get('deleteEvent/{event}', 'EventController@delete');
+    Route::post('eventPhotoAdd', 'EventController@eventPhotoAdd');
+    Route::get('eventPhotoDelete/{event}', 'EventController@eventPhotoDelete');
 
     Route::post('addTypesPhoto', 'TypesPhotoController@addTypesPhoto');
     Route::get('typesPhotoDelete/{photo}', 'TypesPhotoController@photoDelete');

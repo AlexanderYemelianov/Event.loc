@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea name="description" class="form-control" rows="20">{{ $event->description }}</textarea>
+                    <textarea name="description" class="form-control" rows="15">{{ $event->description }}</textarea>
                 </div>
 
                 <div class="row">
@@ -27,13 +27,6 @@
                         <h5>Choose an image for a link</h5>
                         <div class="form-group">
                             <input type="file" name="thumbnails" id="thumbnails" >
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <h5>Choose a collage</h5>
-                        <div class="form-group">
-                            <input type="file" name="collage" id="collage" >
                         </div>
                     </div>
                 </div>
@@ -48,12 +41,38 @@
             <h3>Image</h3>
             <img src="/picUploadTestDir/thumbnails/{{ $event->thumbnails  }}" class="img-responsive img-rounded" alt="{{ $event->thumbnails  }}">
         </div>
+    </div>
 
-        <div class="col-lg-4 col-md-4 col-sm-4">
-            <h3>Collage</h3>
-            <img src="/picUploadTestDir/collages/{{ $event->collage  }}" class="img-responsive img-rounded" alt="{{ $event->collage  }}">
+        <hr>
+
+    <div class="row">
+        <h3 align="center">Here you can add photos</h3>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <form action="/eventPhotoAdd" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                <input type="hidden" name="event_id" value="{{ $event->id }}">
+
+                <div class="form-group">
+                    <input type="file" name="photo" id="photo" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add photo</button>
+                </div>
+            </form>
         </div>
 
+    </div>
+
+    <div class="row">
+        @foreach($event->photos as $photo)
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <img src="../picUploadTestDir/eventsPhoto/{{ $photo->photo }}" class="img-responsive img-rounded" alt="{{ $photo->photo }}">
+                <a href="/eventPhotoDelete/{{ $photo->id}}" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger btn-block">Delete photo</button></a>
+            </div>
+        @endforeach
     </div>
 
 @endsection
