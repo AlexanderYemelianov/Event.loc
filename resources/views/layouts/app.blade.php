@@ -96,7 +96,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                     @if(Session::has('message'))
-                        <h3>{{ Session::get('message') }}</h3>
+                        <b><h2 style="color:#006dcc">{{ Session::get('message') }}</h2><b>
                     @endif
 
                     @yield('content')

@@ -48,16 +48,24 @@ class SocialProjectsController extends Controller
 
     public function deleteSocialProject(SocialProject $project)
     {
-        $thumb = 'picUploadTestDir/socialProjects/' . $project->thumbnail;
 
-        if(file_exists($thumb))
+        if($project->content->isEmpty())
         {
-            unlink($thumb);
+            $thumb = 'picUploadTestDir/socialProjects/' . $project->thumbnail;
+
+            if(file_exists($thumb))
+            {
+                unlink($thumb);
+            }
+
+            $project->delete();
+
+            return back()->with('message', 'Social project was deleted successfully!');
+        }else
+        {
+            return back()->with('message', 'Please delete all content first!');
         }
 
-        /*Social project content check*/
-
-        return back()->with('message', 'Social project was deleted successfully!');
     }
 
     public function editSocialProject(SocialProject $project)
