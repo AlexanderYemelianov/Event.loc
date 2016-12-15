@@ -71,7 +71,7 @@
                 <input type="hidden" name="gallery_id" value="{{ $gallery->id }}">
 
                 <div class="form-group">
-                    <input type="text" name="video_name" id="photo_name" class="form-control" title="You can add video from YouTube / Share(Поделиться) / Embed(HTML-код) coping link from src='...video link...'." required>
+                    <input type="text" name="video_name" class="form-control" title="You can add video from YouTube / Share(Поделиться) / Embed(HTML-код) coping link from src='...video link...'." required>
                 </div>
 
                 <div class="form-group">
