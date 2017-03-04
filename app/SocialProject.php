@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SocialProject extends Model
 {
-    protected $fillable = ['project_name', 'description', 'thumbnail', 'collage'];
+    protected $fillable = ['project_name', 'description', 'thumbnail'];
 
     public function content()
     {
