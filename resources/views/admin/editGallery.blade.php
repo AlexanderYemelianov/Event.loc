@@ -30,14 +30,14 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Edit event type</button>
+                    <button type="submit" class="btn btn-primary">Edit gallery</button>
                 </div>
             </form>
         </div>
 
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
             <h3>Image</h3>
-            <img src="/picUploadTestDir/gallery/{{  $gallery->thumbnail }}" class="img-responsive img-rounded" alt="">
+            <img src="/picUploadTestDir/gallery/{{  $gallery->thumbnail }}" class="img-responsive img-rounded" alt="{{ $gallery->gallery_name }}">
         </div>
 
     </div>

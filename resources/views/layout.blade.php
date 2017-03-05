@@ -15,9 +15,10 @@
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/additionalLibs/magnific-popup/magnific-popup.css">
 
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
     </head>
 
@@ -28,7 +29,7 @@
 
             <div class="row">
                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12" align="center">
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('home') }}">
                         <img src="../EventLab_logo_2-01.png" height="130px" width="90px">
                     </a>
                 </div>
@@ -48,10 +49,12 @@
                                 <li {{ (Request::is('news') ? 'class=active' : '') }}><a href="{{ url('/news') }}">События</a></li>
                                 <li {{ (Request::is('clients') ? 'class=active' : '') }}><a href="{{ url('/clients') }}">Наши клиенты</a></li>
                                 <li {{ (Request::is('socialProjects') ? 'class=active' : '') }}><a href="{{ url('/socialProjects') }}">Социальные проекты</a></li>
-                                <li {{ (Request::is('contacts') ? 'class=active' : '') }}><a href="{{ url('/contacts') }}">Контакты</a></li>
                                 <li {{ (Request::is('gallery') ? 'class=active' : '') }}><a href="{{ url('/gallery') }}">Галерея</a></li>
                                 <li {{ (Request::is('locations') ? 'class=active' : '') }}><a href="{{ url('/locations') }}">Места</a></li>
                                 <li {{ (Request::is('review') ? 'class=active' : '') }}><a href="{{ url('/review') }}">Отзывы</a></li>
+                                <li {{ (Request::is('ourServices') ? 'class=active' : '') }}><a href="{{ url('/ourServices') }}">Услуги/Цены</a></li>
+                                <li {{ (Request::is('ourDecorations') ? 'class=active' : '') }}><a href="{{ url('/ourDecorations') }}">Декор/Аренда</a></li>
+                                <li {{ (Request::is('contacts') ? 'class=active' : '') }}><a href="{{ url('/contacts') }}">Контакты</a></li>
                             </ul>
                         </div>
                     </div>
@@ -72,14 +75,12 @@
 
         {{--Content section--}}
 
-        <div>
+        <div class="container-fluid main-page">
             @yield('indexContent')
         </div>
 
         <div class="container">
-
             @yield('content')
-
         </div><br><br><br><br>
 
     </div>
@@ -119,7 +120,11 @@
         </div>
 
     <!-- Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/additionalLibs/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     </body>
 </html>

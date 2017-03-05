@@ -7,7 +7,7 @@
 
             <h3>Here you can edit <b>{{ $type->type_name }}</b> </h3>
 
-            <form action="/eventTypeUpdate/{{ $type->id }}" method="post" enctype="multipart/form-data">
+            <form action="/eventTypeUpdate/{{ $type->slug }}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
                 <input type="hidden" name="oldThumb" value="{{ $type->thumbnail  }}">
@@ -42,7 +42,7 @@
 
         <div class="col-lg 12 col-md-12 col-sm-12 col-xs0-12">
 
-            <h3>Here you can edit photos of <b>{{ $type->type_name }}</b> </h3>
+            <h3>Here you can edit photos of <b>{{ $type->type_name }}</b></h3>
 
             <form action="/addTypesPhoto" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

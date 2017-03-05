@@ -20,6 +20,7 @@ class EventsTypeController extends Controller
     {
         $this->validate($request, [
             'type_name' => ['required'],
+            'slug' => ['required'],
             'description' => ['required'],
             'class' => ['required'],
         ]);
@@ -41,7 +42,7 @@ class EventsTypeController extends Controller
 
         //creating thumbnails of img
 
-        $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(480, 360)->save('picUploadTestDir/thumbnails/' . $filename, 100);
+        $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(1024, 768)->save('picUploadTestDir/thumbnails/' . $filename, 100);
 
         $newType->save();
 
@@ -93,7 +94,6 @@ class EventsTypeController extends Controller
 
     public function delete(EventsType $type)
     {
-
         $thumb = 'picUploadTestDir/thumbnails/' . $type->thumbnail;
 
         if(file_exists($thumb))

@@ -40,9 +40,9 @@ class GalleriesContentController extends Controller
 
         //move file to correct location
 
-        if(!file_exists('picUploadTestDir/gallery'))
+        if(!file_exists('picUploadTestDir/gallery/'))
         {
-            mkdir('picUploadTestDir/gallery', 0777, true);
+            mkdir('picUploadTestDir/gallery/', 0777, true);
         }
         $file->move('picUploadTestDir/gallery/', $filename);
 
@@ -55,7 +55,6 @@ class GalleriesContentController extends Controller
 
         return back()->with('message', 'Img was uploaded successfully!');
     }
-
 
     public function photoDelete(Photo $photo)
     {

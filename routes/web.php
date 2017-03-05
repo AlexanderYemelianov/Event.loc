@@ -14,7 +14,7 @@
 Route::group(['middleware' => ['web']], function(){
 
     Auth::routes();
-    Route::get('/home', 'HomeController@home');
+    Route::get('admin', 'HomeController@admin');
     Route::get('eventsTypes', 'HomeController@eventsTypes');
     Route::get('programs', 'HomeController@events');
 
@@ -83,9 +83,21 @@ Route::group(['middleware' => ['web']], function(){
     Route::post('addNYProgram', 'NewYearsController@addNYProgram');
     Route::get('deleteNYProgram/{newYear}', 'NewYearsController@delete');
 
+    Route::get('getServices', 'HomeController@getServices');
+    Route::resource('services', 'ServicesController');
+    Route::get('deleteService/{service}', 'ServicesController@deleteService');
+
+    Route::get('getDecorations', 'HomeController@getDecorations');
+    Route::resource('decorations', 'DecorationsController');
+    Route::get('deleteDecorations/{decorations}', 'DecorationsController@delete');
+    Route::post('decorItemAdd', 'DecorItemsController@itemAdd');
+    Route::get('decorItemDelete/{item}', 'DecorItemsController@itemDelete');
+
+
+    Route::get('home', 'PagesController@index');
     Route::get('/', 'PagesController@index');
     Route::get('about', 'PagesController@about');
-    Route::get('news', 'PagesController@news');
+    Route::get('events', 'PagesController@events');             //previously news
     Route::get('clients', 'PagesController@clients');
     Route::get('socialProjects', 'PagesController@socialProjects');
     Route::get('locations', 'PagesController@locations');
@@ -94,15 +106,18 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('projectShow/{project}', 'PagesController@projectShow');
     Route::get('teambuildingShow/{type}', 'PagesController@teambuildingShow');
     Route::get('typeShow/{type}', 'PagesController@showType');
-    Route::get('eventShow/{event}', 'PagesController@showEvent');
+    Route::get('eventShow/{event}', 'PagesController@eventShow');
     Route::get('galleryShow/{gallery}', 'PagesController@galleryShow');
+    Route::get('decorationShow/{decoration}', 'PagesController@decorationShow');
     Route::get('contactForm', 'PagesController@contactForm');
-    Route::get('newYearProgramShow', 'PagesController@newYearProgramShow');
+    Route::get('corporateNewYearProgram', 'PagesController@corporateNewYearProgram');
     Route::get('review', 'PagesController@review');
+    Route::get('ourServices', 'PagesController@services');
+    Route::get('ourDecorations', 'PagesController@decorations');
 
     //Static pages with custom styles
 
-    Route::get('conferencesShow', function(){
+    Route::get('conferences', function(){
         return view('pages.conferences');
     });
 

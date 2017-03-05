@@ -8,7 +8,7 @@
 
             <h3>Here you can update <b>{{ $event->event_name }}</b></h3>
 
-            <form action="/eventUpdate/{{ $event->id }}" method="post" enctype="multipart/form-data">
+            <form action="/eventUpdate/{{ $event->slug }}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
                 <input type="hidden" name="oldThumb" value="{{ $event->thumbnails  }}">

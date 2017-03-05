@@ -38,7 +38,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('home') }}">
                         {{ config('app.name', 'EventLab') }}
                     </a>
                 </div>
@@ -64,6 +64,8 @@
                             <li><a href="{{ url('/getLocations') }}">Locations</a></li>
                             <li><a href="{{ url('/getNews') }}">Events</a></li>
                             <li><a href="{{ url('/getReviews') }}">Reviews</a></li>
+                            <li><a href="{{ url('/getServices') }}">Services</a></li>
+                            <li><a href="{{ url('/getDecorations') }}">Decorations</a></li>
                             <li><a href="{{ url('/getMessages') }}">Messages</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

@@ -20,11 +20,13 @@ class EventController extends Controller
     {
         $this->validate($request, [
         'event_name' => ['required'],
+        'slug' => ['required'],
         'description' => ['required'],
         ]);
 
         $newEvent = new Event();
         $newEvent->event_name = $request->event_name;
+        $newEvent->slug = $request->slug;
         $newEvent->description = $request->description;
         $newEvent->events_type_id = $request->events_type_id;
 
@@ -64,7 +66,6 @@ class EventController extends Controller
 
         if($event->photos->isEmpty())
         {
-
             $thumb = 'picUploadTestDir/thumbnails/' . $event->thumbnails;
 
             if(file_exists($thumb))

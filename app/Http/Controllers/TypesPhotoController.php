@@ -41,7 +41,7 @@ class TypesPhotoController extends Controller
         $file->move('picUploadTestDir/typesPhotos/', $filename);
 
 
-        $file = Image::make('picUploadTestDir/typesPhotos/'. $filename)->resize(480, 360)->save('picUploadTestDir/typesPhotos/' . $filename, 80);
+        $file = Image::make('picUploadTestDir/typesPhotos/'. $filename)->resize(1024, 768)->save('picUploadTestDir/typesPhotos/' . $filename, 80);
 
         //save img path to DB
 

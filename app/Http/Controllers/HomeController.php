@@ -14,7 +14,8 @@ use App\Location;
 use App\News;
 use App\NewYear;
 use App\Review;
-
+use App\Services;
+use App\Decorations;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function home()
+    public function admin()
     {
         return view('admin.home');
     }
@@ -90,6 +91,20 @@ class HomeController extends Controller
         $newYearPrograms = NewYear::all();
 
         return view('admin.newYearPrograms', compact('newYearPrograms'));
+    }
+
+    public function getServices()
+    {
+        $services = Services::all();
+
+        return view('admin.services', compact('services'));
+    }
+
+    public function getDecorations()
+    {
+        $decorations = Decorations::all();
+
+        return view('admin.decorations', compact('decorations'));
     }
 
     //Manipulation with messages

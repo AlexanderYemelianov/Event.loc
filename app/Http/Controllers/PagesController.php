@@ -14,12 +14,13 @@ use App\Gallery;
 use App\Location;
 use App\News;
 use App\Review;
+use App\Services;
+use App\Decorations;
 
 class PagesController extends Controller
 {
     public function index()
     {
-
         $all = EventsType::all();
 
         $teamBuilding = $all->where('id', 1);
@@ -34,8 +35,9 @@ class PagesController extends Controller
 
         $privateEvents = $all->where('class', 3);
 
+        $wedigsEvents = $all->where('class', 4);
 
-        return view('pages.index', compact('teamBuilding' ,'corpEvents','fashionEvents', 'privateEvents', 'newYear', 'conferences'));
+        return view('pages.index', compact('teamBuilding' ,'corpEvents','fashionEvents', 'privateEvents', 'newYear', 'conferences', 'wedigsEvents'));
     }
 
     public function about()
@@ -43,9 +45,8 @@ class PagesController extends Controller
         return view('pages.about');
     }
 
-    public function news()
+    public function events()
     {
-
         $allNews = News::all()->sortByDesc('news_date');
 
         $activeNews = $allNews->where('news_active', '!=', 0);
@@ -107,11 +108,11 @@ class PagesController extends Controller
         return view('pages.teambuildingShow', compact('type'));
     }
 
-    public function newYearProgramShow()
+    public function corporateNewYearProgram()
     {
         $newYearProgram = NewYear::all();
 
-        return view('pages.newYearProgramShow', compact('newYearProgram'));
+        return view('pages.corporateNewYearProgram', compact('newYearProgram'));
     }
 
     public function showType(EventsType $type)
@@ -119,11 +120,11 @@ class PagesController extends Controller
         return view('pages.showType', compact('type'));
     }
 
-    public function showEvent(Event $event)
+    public function eventShow(Event $event)
     {
         $events = Event::all()->where('id', '!=', $event->id);
 
-        return view('pages.showEvent', compact('event', 'events'));
+        return view('pages.eventShow', compact('event', 'events'));
     }
 
     public function projectShow(SocialProject $project)
@@ -143,13 +144,31 @@ class PagesController extends Controller
                 $videos[] = $content->content;
             }
         }
-
         return view('pages.showProject', compact('project', 'photos', 'videos'));
     }
 
     public function galleryShow(Gallery $gallery)
     {
          return view('pages.galleryShow', compact('gallery'));
+    }
+
+    public function services()
+    {
+        $services = Services::all();
+
+        return view('pages.services', compact('services'));
+    }
+
+    public function decorations()
+    {
+        $decorations = Decorations::all();
+
+        return view('pages.decorations', compact('decorations'));
+    }
+
+    public function decorationShow(Decorations $decoration)
+    {
+        return view('pages.decorationShow', compact('decoration'));
     }
 
 }

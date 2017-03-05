@@ -5,32 +5,27 @@
     <h3>{{ $project->project_name }}</h3>
 
     <div>
-        <p align="justify"><?=nl2br($project->description);?></p>
+        <p align="justify">{{ nl2br($project->description) }}</p>
     </div>
 
     <hr>
 
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 style="padding: 0 5px 10px 5px;">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                {{--<ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>--}}
+
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
                         <img class="first-slide img-responsive" width="100%"
-                                               src="../picUploadTestDir/socialProjects/{{ $project->thumbnail }}"
-                                               alt="{{ $project->thumbnail }}">
+                           src="../picUploadTestDir/socialProjects/{{ $project->thumbnail }}"
+                           alt="{{ $project->thumbnail }}">
                     </div>
 
                     @foreach($photos as $photo)
                         <div class="item">
                             <img class="img-responsive" width="100%"
-                                                   src="../picUploadTestDir/socialProjects/{{ $photo }}"
-                                                   alt="{{ $photo }}">
+                               src="../picUploadTestDir/socialProjects/{{ $photo }}"
+                               alt="{{ $photo }}">
                         </div>
                     @endforeach
 

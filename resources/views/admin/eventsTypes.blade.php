@@ -13,6 +13,10 @@
         </div>
 
         <div class="form-group">
+            <input type="text" name="slug" required placeholder="slug that will be used in URL" class="form-control">
+        </div>
+
+        <div class="form-group">
             <textarea name="description" class="form-control" required placeholder="Description of new event type"></textarea>
         </div>
 
@@ -22,6 +26,7 @@
                 <option value="1">Корпаративные мероприятия</option>
                 <option value="2">Имиджевые мероприятия</option>
                 <option value="3">Частные мероприятия</option>
+                <option value="4">Свадьбы</option>
             </select>
 
         </div>
@@ -52,13 +57,13 @@
                     <td>{{ $item->type_name }}</td>
                     <td><?=nl2br(mb_substr($item['description'],0,200)) . '...';?></td>
                     <td>
-                        <a href="eventTypeEdit/{{ $item->id }}"><button class="btn btn-sm btn-warning">Edit</button></a>
+                        <a href="eventTypeEdit/{{ $item->slug }}"><button class="btn btn-sm btn-warning">Edit</button></a>
                     </td>
                     <td>
                         @if($item->id > 3)
-                            <a href="eventTypeDelete/{{ $item->id }}" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger">Delete</button></a>
+                            <a href="eventTypeDelete/{{ $item->slug }}" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger">Delete</button></a>
                         @else
-
+                            <p>Static</p>
                         @endif
                     </td>
                 </tr>

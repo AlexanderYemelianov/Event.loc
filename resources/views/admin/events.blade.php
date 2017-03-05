@@ -14,6 +14,10 @@
         </div>
 
         <div class="form-group">
+            <input type="text" name="slug" required class="form-control" placeholder="Slug that will be used in url">
+        </div>
+
+        <div class="form-group">
             <textarea name="description" class="form-control" required placeholder="Description of new program"></textarea>
         </div>
 
@@ -45,10 +49,10 @@
                     <td><?=$item['event_name'];?></td>
                     <td><?=nl2br(mb_substr($item['description'],0,200)) . '...';?></td>
                     <td>
-                        <a href="editEvent/<?=$item['id'];?>"><button class="btn btn-sm btn-warning">Edit</button></a>
+                        <a href="editEvent/<?=$item['slug'];?>"><button class="btn btn-sm btn-warning">Edit</button></a>
                     </td>
                     <td>
-                        <a href="deleteEvent/<?=$item['id'];?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger">Delete</button></a>
+                        <a href="deleteEvent/<?=$item['slug'];?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-danger">Delete</button></a>
                     </td>
                 </tr>
 

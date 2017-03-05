@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventsType extends Model
 {
-    protected $fillable = ['type_name', 'description', 'thumbnail', 'class'];
+    protected $fillable = ['type_name', 'description', 'thumbnail', 'class', 'slug'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function events()
     {

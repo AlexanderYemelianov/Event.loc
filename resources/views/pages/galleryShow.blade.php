@@ -6,21 +6,14 @@
     <small>{{$gallery->date}}</small>
 
     <div>
-        <p align="justify"><?=nl2br($gallery->gallery_description);?></p>
+        <p align="justify">{{ nl2br($gallery->gallery_description) }}</p>
     </div>
 
     <div class="row">
-
         @if($gallery->photos->count() >= 1)
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12" style="padding: 0 5px 10px 5px;">
                 <!-- Carousel -->
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    {{--<ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>--}}
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
                             <img class="first-slide img-responsive" width="100%"
