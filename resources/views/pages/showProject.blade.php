@@ -11,7 +11,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 style="padding: 0 5px 10px 5px;">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12" style="padding: 0 5px 10px 5px;">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
                 <div class="carousel-inner" role="listbox">
