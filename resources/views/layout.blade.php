@@ -123,7 +123,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/app.js"></script>
-    <script src="js/common.js"></script>
+    <script src="/js/common.js"></script>
     <script src="/additionalLibs/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     </body>

@@ -5,7 +5,7 @@
     <h3>{{ $type->type_name }}</h3>
 
     <div>
-        <p align="justify">{{ strval(nl2br($type->description)) }}</p>
+        <p align="justify">{!! nl2br($type->description) !!}</p>
     </div>
 
     <div class="row">
