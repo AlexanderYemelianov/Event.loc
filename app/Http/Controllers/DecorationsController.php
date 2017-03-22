@@ -77,7 +77,7 @@ class DecorationsController extends Controller
 
             //creating thumbnails of img
 
-            $thumb = Image::make('picUploadTestDir/decorations/'. $filename)->resize(480, 360)->save('picUploadTestDir/decorations/' . $filename, 100);
+            $thumb = Image::make('picUploadTestDir/decorations/'. $filename)->resize(1024, 768)->save('picUploadTestDir/decorations/' . $filename, 100);
 
             $oldThumbPath = 'picUploadTestDir/decorations/' . $request->oldThumb;
 
@@ -99,7 +99,7 @@ class DecorationsController extends Controller
             $decorationsPhotos[] = $item->id;
         }
 
-        $photoCheck = isset($decorationsPhotos) ? $decorationsPhotos: false;
+        $photoCheck = isset($decorationsPhotos) ? $decorationsPhotos: null;
 
         if(isset($photoCheck))
         {

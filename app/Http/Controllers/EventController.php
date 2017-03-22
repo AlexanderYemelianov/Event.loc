@@ -105,7 +105,7 @@ class EventController extends Controller
 
             //creating thumbnails of img
 
-            $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(480, 360)->save('picUploadTestDir/thumbnails/' . $filename, 100);
+            $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(1024, 768)->save('picUploadTestDir/thumbnails/' . $filename, 100);
 
             $oldThumbPath = 'picUploadTestDir/thumbnails/' . $request->oldThumb;
 

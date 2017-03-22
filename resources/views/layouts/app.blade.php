@@ -36,11 +36,6 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('home') }}">
-                        {{ config('app.name', 'EventLab') }}
-                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -109,6 +104,11 @@
     </div>
 
     <!-- Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="../js/confirm.js"></script>
+    <script src="/additionalLibs/magnific-popup/jquery.magnific-popup.min.js"></script>
 </body>
 </html>

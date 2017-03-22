@@ -27,6 +27,8 @@ class EventsTypeController extends Controller
 
         $newType = new EventsType($request->all());
 
+        $newType->description = html_entity_decode($request->description);
+
         $file = $request->file('thumbnails');
 
         //set thumbnail name and move to a folder
@@ -77,7 +79,7 @@ class EventsTypeController extends Controller
 
             //creating thumbnails of img
 
-            $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(480, 360)->save('picUploadTestDir/thumbnails/' . $filename, 100);
+            $thumb = Image::make('picUploadTestDir/thumbnails/'. $filename)->resize(1024, 768)->save('picUploadTestDir/thumbnails/' . $filename, 100);
 
             $oldThumbPath = 'picUploadTestDir/thumbnails/' . $request->oldThumb;
 

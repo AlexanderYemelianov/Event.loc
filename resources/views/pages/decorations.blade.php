@@ -2,7 +2,7 @@
 
 @section('indexContent')
 
-    <h3 align="center">Галерея</h3>
+    <h3 align="center">Декор/Аренда</h3>
 
     <div class="row">
         @foreach($decorations as $decoration)
