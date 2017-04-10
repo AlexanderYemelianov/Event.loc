@@ -46,7 +46,7 @@
                             <ul class="nav navbar-nav">
                                 <li {{ (Request::is('/') ? 'class=active' : '') }}><a href="{{ url('/') }}">Главная</a></li>
                                 <li {{ (Request::is('about') ? 'class=active' : '') }}><a href="{{ url('/about') }}">О компании</a></li>
-                                <li {{ (Request::is('news') ? 'class=active' : '') }}><a href="{{ url('/news') }}">События</a></li>
+                                <li {{ (Request::is('news') ? 'class=active' : '') }}><a href="{{ url('/events') }}">События</a></li>
                                 <li {{ (Request::is('clients') ? 'class=active' : '') }}><a href="{{ url('/clients') }}">Наши клиенты</a></li>
                                 <li {{ (Request::is('socialProjects') ? 'class=active' : '') }}><a href="{{ url('/socialProjects') }}">Социальные проекты</a></li>
                                 <li {{ (Request::is('gallery') ? 'class=active' : '') }}><a href="{{ url('/gallery') }}">Галерея</a></li>

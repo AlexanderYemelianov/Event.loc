@@ -53,7 +53,7 @@
         @foreach($events as $item)
 
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding: 0 1px 0 1px;">
-                <a href="/eventShow/{{ $item->id }}">
+                <a href="/eventShow/{{ $item->slug }}">
                     <div class="hovereffect">
                         <img class="img-responsive" src="../picUploadTestDir/thumbnails/{{ $item->thumbnails }}" alt="{{substr($item->thumbnails, 25)}}">
                         <div class="overlay">
