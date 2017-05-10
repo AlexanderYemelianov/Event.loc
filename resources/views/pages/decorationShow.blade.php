@@ -5,7 +5,7 @@
     <h3>{{ $decoration->decorations_name }}</h3>
 
     <div>
-        <p align="justify">{{ nl2br($decoration->decorations_description) }}</p>
+        <p align="justify">{!! nl2br($decoration->decorations_description) !!}</p>
     </div>
 
     <div class="row">

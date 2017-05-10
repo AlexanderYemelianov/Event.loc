@@ -6,7 +6,7 @@
     <small>{{$gallery->date}}</small>
 
     <div>
-        <p align="justify">{{ nl2br($gallery->gallery_description) }}</p>
+        <p align="justify">{!! nl2br($gallery->gallery_description) !!}</p>
     </div>
 
     <div class="row">
