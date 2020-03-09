@@ -62,6 +62,7 @@
                             <li><a href="{{ url('/getServices') }}">Services</a></li>
                             <li><a href="{{ url('/getDecorations') }}">Decorations</a></li>
                             <li><a href="{{ url('/getMessages') }}">Messages</a></li>
+                            <li><a href="{{ url('/appConfig') }}">App Configurations</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

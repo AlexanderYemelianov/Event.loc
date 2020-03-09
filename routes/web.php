@@ -13,10 +13,13 @@
 
 Route::group(['middleware' => ['web']], function(){
 
-    Auth::routes();
+    Auth::routes(['register' => false]);
     Route::get('admin', 'HomeController@admin');
     Route::get('eventsTypes', 'HomeController@eventsTypes');
     Route::get('programs', 'HomeController@events');
+
+    Route::get('appConfig', 'AppConfigController@getAppConfig');
+    Route::post('saveConfig', 'AppConfigController@saveAppConfig');
 
     Route::get('getMessages', 'HomeController@getMessages');
     Route::get('getAllMessages', 'HomeController@getAllMessages');
